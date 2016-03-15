@@ -1,7 +1,5 @@
 # Created by https://www.gitignore.io/api/wordpress
 
-test.txt
-
 ### WordPress ###
 *.log
 wp-config.php
