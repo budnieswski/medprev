@@ -74,6 +74,7 @@ Class Taraven extends TimberSite {
       else
         wp_enqueue_style( md5($script), $theme_uri . '/css/' . $script );      
     }
+  }
 
 
   // Add Category Name to body_class
