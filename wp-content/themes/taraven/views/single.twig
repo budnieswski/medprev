@@ -1,0 +1,11 @@
+{% extends 'views/layout.twig' %}
+
+{% block content %}
+{% if post %}
+  <div class="row"> <h1>{{post.post_title }}</h1> </div>
+  <div class="row"> {{post.content }} </div>
+
+  <div class="row"><a class="single-voltar" href="{{ current_cat.link }}">Voltar</a></div>
+{% endif %}
+
+{% endblock %}

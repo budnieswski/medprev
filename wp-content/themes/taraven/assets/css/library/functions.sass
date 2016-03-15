@@ -1,0 +1,80 @@
+=img($path, $options:null)
+  background: url("../img/#{$path}") unquote($options)
+
+
+=font($fontName)
+  @font-face
+    font-family: "#{$fontName}"
+    src: url("fonts/#{$fontName}.eot?iefix") format('eot'), url("fonts/#{$fontName}.woff") format('woff'), url("fonts/#{$fontName}.ttf") format('truetype'), url("fonts/#{$fontName}.svg#webfontZam02nTh") format('svg')
+    font-weight: normal
+    font-style: normal
+
+
+=placeholder_color($color)
+  textarea::-webkit-input-placeholder,
+  input::-webkit-input-placeholder
+    color: $color
+
+  // Firefox 18-
+  textarea:-moz-placeholder,
+  input:-moz-placeholder
+    color: $color
+
+  // Firefox 19+
+  textarea::-moz-placeholder,
+  input::-moz-placeholder
+    color: $color
+
+  textarea:-ms-input-placeholder,
+  input:-ms-input-placeholder
+    color: $color
+// end placeholder
+
+
+// For ONE parameter, pass "null" at end of list
+=wp_nav($options)
+  a,
+  a:visited
+    @each $option in $options
+      $html: ''
+      @for $i from 2 through length($option)
+        // If for not put extra space at end
+        @if $i!=length($option)
+          $html: $html + "#{nth($option, $i)} "
+        @else
+          $html: $html + "#{nth($option, $i)}"
+      // write option
+      #{nth($option, 1)}: #{unquote($html)}
+
+
+// For ONE parameter, pass "null" at end of list
+=wp_nav_hover($options)
+  a:hover,
+  li.hover > a,
+  li.current_page_item > a,
+  li.current-menu-item > a,
+  li.current-post-ancestor > a,
+  li.current-menu-parent > a,
+  li.current-post-parent > a
+    @each $option in $options
+      $html: '' 
+      @for $i from 2 through length($option)
+        
+        // If for not put extra space at end
+        @if $i!=length($option)
+          $html: $html + "#{nth($option, $i)} "
+        @else
+          $html: $html + "#{nth($option, $i)}"
+      
+      // write option
+      #{nth($option, 1)}: #{unquote($html)}
+
+
+
+
+
+=test($options)
+  // @debug length($options)
+  // @debug $options
+  // .teste
+  //   #{$options}

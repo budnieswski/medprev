@@ -1,0 +1,62 @@
+{% if comments %}
+
+	<h3>Comentários</h3>
+	<div id="comments" class="commentlist">
+	{% for comment in comments %}
+		<div class="twelve columns item" id="comment-{{comment.ID}}">
+			<div class="row">{% if comment.comment_approved == 0 %}<em>Seu comentário aguarda moderação.<br></em> {% endif %}</div>
+			<div class="row comment">{{comment.comment_content|wpautop}}</div>
+			<div class="row author">{{comment.author.name}} - {{ comment.comment_date|date('F/Y') }}</div>
+		</div>
+	{% endfor %}
+	</div>
+
+{% else %}
+
+	{% if post.comment_status == 'open' %}
+		{# If comments are open, but there are no comments #}
+	{% else %}
+		{# If comments are closed #}
+	{% endif %}
+
+{% endif %}
+
+{# Show comment form #}
+{% if post.comment_status == 'open' %}
+	<h3 id="respond">Deixe seu comentário</h3>
+
+	{% if fn('get_option', 'comment_registration') and not user.ID %}
+		<p>Você deve estar <a href="{{site.link}}/wp-login.php?redirect_to={{post.link}}">logado</a> para postar um coment&aacute;rio.</p>
+	{% else %}
+		<form action="{{site.link}}/wp-comments-post.php" method="post" id="commentform">
+			{% if fn('get_current_user_id') %}
+				<p>Identificado como: <a href="{{site.link}}/wp-admin/profile.php">{{user.display_name}}</a>. <a href="{{site.link}}/wp-login.php?action=logout" title="Deslogar-se">Deslogar-se &raquo;</a></p>
+			{% else %}
+				<div class="one-half column">	
+					<p>
+						<label for="author"><small>Nome*</small></label>
+						<input type="text" name="author" id="author" value="" size="22" tabindex="1" class="input200"/>
+					</p>				
+					<p>
+						<label for="email"><small>E-mail* (n&atilde;o ser&aacute; divulgado!)</small></label>
+						<input type="text" name="email" id="email" value="" size="22" tabindex="2" class="input200"/>
+					</p>
+				</div>
+			{% endif %} {# User logged #}
+
+			<div class="one-half column">
+				<p>
+					<label for="comment"><small>Comentário</small></label>
+					<textarea name="comment" id="comment"></textarea>
+				</p>
+			</div>
+
+			<p>
+				<input name="submit" type="submit" id="submit" tabindex="5" value="Inserir coment&aacute;rio" />
+				<input type="hidden" name="comment_post_ID" value="{{post.id}}" />
+			</p>
+			{# {{ fn('comment_form', post.id) }} #}
+
+		</form>
+	{% endif %} {# If registration required and not logged in #}
+{% endif %} {# Close comments open #}

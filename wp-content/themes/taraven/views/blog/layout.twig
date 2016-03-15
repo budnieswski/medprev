@@ -1,0 +1,147 @@
+{% import 'views/macros.twig' as macros %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]--> <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]--> <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>{{ fn('wp_title') }}</title>
+  <!-- <meta name="author" content="Guilherme Budnieswski - Muito Mais Digital"> -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- CSS
+  ================================================== -->
+  {% for css in site.theme.css %}
+    {% if css matches '{^(http|https|//)}' %}
+      <link rel="stylesheet" href="{{ css }}">
+    {% else %}
+      <link rel="stylesheet" href="{{site.theme.link}}/assets/css/{{ css }}">
+    {% endif %}
+  {% endfor %}
+
+  <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+
+  <!-- Favicons
+  ================================================== -->
+  <link rel="shortcut icon" href="{{ site.theme.link }}/assets/img/favicon/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-76x76.png" />
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ site.theme.link }}/assets/img/favicon/apple-touch-icon-152x152.png" />
+
+  {{wp_head}}
+
+  <!-- Browser Update
+  ================================================== -->
+  <script> 
+  var $buoop = {c:2}; 
+  function $buo_f(){ 
+   var e = document.createElement("script"); 
+   e.src = "//browser-update.org/update.js"; 
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+  </script> 
+</head>
+
+<body id="blog">
+  
+<!-- Header
+================================================== -->
+<div class="band header">
+  <div class="container">
+    <div class="row">
+      <div class="three columns logo"> <a href="{{ site.url }}" class="block">LOGO</a> </div>
+      
+      <div class="three columns u-remove-left u-pull-right busca">
+        <div class="search">
+          <form action="{{ site.url }}/blog">
+            <input type="text" name="s" id="s" placeholder="Buscar no blog" />
+            <input type="submit" value="Enviar" class="enviar" />
+          </form>
+        </div>
+      </div> <!-- e#busca -->
+
+      <nav class="seven columns u-remove-left u-pull-right">
+        {{ macros.menu(site.menu.blog.get_items, '') }}        
+      </nav>
+
+    </div>
+  </div>
+
+  </div> <!-- e#container -->
+</div> <!-- e#header -->
+
+<!-- Banner
+================================================== -->
+<div class="band banner">
+  <div class="container">
+    <div class="twelve columns">
+      <div class="wrap-banner slides">
+        <ul class="rslides"> {{ fn('taraven_acf_gallery', 'blog_banner') }} </ul>
+      </div>
+    </div>
+  </div> <!-- e#container -->
+</div> <!-- e#banner -->
+
+<!-- Wrap
+================================================== -->
+<div class="band wrap">
+  <div class="container">    
+    
+    <div class="eight columns">
+    {% block content %}{% endblock %}
+    </div> <!-- e#conteudo -->
+
+    <div class="four columns u-remove-left u-pull-right sidebar">{{ get_sidebar('blog/sidebar') }}</div>
+    <div class="u-cf"><br></div>
+  </div> <!-- e#container -->
+</div> <!-- e#wrap -->
+
+
+<!-- Footer
+================================================== -->
+<div class="band footer">
+  <div class="container">
+    <a href="#" class="scrollup">GoUp</a>
+    <div class="row"> <a href="http://www.crponto.com">www.crponto.com</a> </div>
+    <div class="row"> email: contato@crponto.com </div>
+
+    <div class="twelve columns u-cf mmd">
+      <div class="u-pull-right">
+          <a href="http://muitomaisdigital.com.br/" title="Desenvolvimento de site em Curitiba">
+            <img src="{{ site.theme.link }}/assets/img/mmd.png" alt="Desenvolvimento de site em Curitiba" title="Desenvolvimento de site em Curitiba">
+          </a>
+        </div>
+    </div>
+
+  </div> <!-- e#container -->
+</div> <!-- e#footer -->
+
+
+
+<!-- JS
+================================================== -->
+{% for js in site.theme.js %}
+  {% if js matches '{^(http|https|//)}' %}
+    <script src="{{ js }}"></script>
+  {% else %}
+    <script src="{{ site.theme.link }}/assets/js/{{ js }}"></script>
+  {% endif %}
+{% endfor %}
+
+<script>
+jQuery(function($){
+  $("select#blog-categories").change(function(){
+    window.location.href = $(this).val();
+  });
+});
+</script>
+
+{{wp_footer}}
+</body>
+</html>

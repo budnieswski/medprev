@@ -1,0 +1,473 @@
+// Default
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+*
+  margin: 0
+  padding: 0
+  
+td
+  vertical-align: top
+
+ul, li
+  margin: 0
+  padding: 0
+
+a.block
+  display: block
+  width: 100%
+  height: 100%
+
+a, a:visited
+  color: inherit
+  text-decoration: none
+
+a:hover
+  color: inherit
+  text-decoration: underline
+
+.alignleft
+  float: left !important
+
+.alignright
+  float: right !important
+
+.aligncenter
+  margin: 0 auto !important
+  display: block
+
+figure
+  margin: 0
+  line-height: 0
+  text-align: center
+
+img.alignleft
+  margin-right: 20px
+  margin-bottom: 15px
+
+img.alignright
+  margin-left: 20px
+  margin-bottom: 15px
+
+.wp-caption-text
+  text-align: center
+
+.wp-caption.alignleft
+  margin-right: 20px
+
+.wp-caption.alignright
+  margin-left: 20px
+
+input.error
+  margin-bottom: 0
+  box-shadow: 0 0 5px #d21b1a
+  border: 1px solid #d21b1a
+
+img.size-full
+  max-width: 100%
+  height: auto
+  box-sizing: border-box
+
+form, input, select, textarea
+  margin: 0
+  padding: 0
+
+// Bands
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// .band
+
+// .band.header
+
+// .band.banner
+
+// .band.wrap
+
+// .band.footer
+
+// Header
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.header
+  .logo
+    text-indent: -999em
+    +img("logo.png", "no-repeat center")
+    background-size: contain
+
+  .telefone
+    color: #fff
+    font-size: 25px
+    text-align: right
+    small
+      font-size: 69%
+
+  nav
+    @import layout.menu.sass
+    @import layout.menu.mobile.sass
+
+// Slider
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.slides
+  // Relative Slider (Base)
+  .rslides
+    position: relative
+    list-style: none
+    overflow: hidden
+    width: 100%
+    padding: 0
+    margin: 0
+  
+    li
+      -webkit-backface-visibility: hidden
+      position: absolute
+      display: none
+      width: 100%
+      left: 0
+      top: 0
+      
+      &:first-child
+        position: relative
+        display: block
+        float: left
+    
+    img
+      display: block
+      height: auto
+      float: left
+      width: 100%
+      border: 0
+  // .rslides
+
+  .rslides_tabs
+    position: absolute
+    z-index: 95
+    width: 100%
+    text-align: center
+    bottom: 0
+    opacity: 0.3
+    &:hover
+      opacity: 1 !important
+
+    li
+      display: inline-table
+      margin: 0 5px
+
+      a
+        width: 1px
+        height: 1px
+        display: block
+        text-indent: -999em !important
+        background: $lyt_slider_tabs_color
+        padding: $lyt_slider_tabs_size
+        -webkit-border-radius: 50px
+        -moz-border-radius: 50px
+        border-radius: 50px
+
+    a:hover, li.rslides_here a
+      background: $lyt_slider_tabs_color_active
+  // .rslides_tabs
+
+  .next, .prev
+    position: absolute
+    z-index: 95
+    top: 45%
+    width: 24px
+    height: 30px
+    text-indent: -999em
+    +img("bg/slider-arrows.png", "no-repeat")
+    opacity: 0.3
+    &:hover
+      opacity: 1
+
+  .next
+    right: 5px
+    background-position: -31px 0
+    &:hover
+      background-position: -31px -38px
+  
+  .prev
+    left: 5px
+    &:hover
+      background-position: 0 -38px
+
+
+// Banner
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.banner
+  .container
+    height: $lyt_banner_height
+
+  .wrap-banner
+    margin: 0 auto
+    position: relative
+    z-index: 90
+    width: 100% 
+
+// Content (Wrap)
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.wrap
+  .container
+    padding: 30px 0
+
+  #breadcrumbs
+    font-size: 14px
+    .breadcrumb_last
+      text-decoration: underline
+  
+  h1, h2, h3, h4, h5
+    margin: 0
+    padding: 0
+    text-indent: 0
+    line-height: normal
+    font-size: 17px
+    span
+      display: inline-block
+      vertical-align: middle
+      line-height: normal
+
+  .acf-map
+    width: 100%
+    height: 300px
+    border: #E1E1E1 solid 1px
+    margin: 20px 0
+
+  a.single-voltar
+    color: #E1E1E1
+    text-transform: uppercase
+    font-size: 16px
+    padding-left: 23px
+    +img("bg/single-voltar.png", "no-repeat left center")
+
+// Footer
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.footer
+  .mmd
+    position: absolute
+    right: 0
+    bottom: 0
+  
+  .scrollup
+    display: none
+    position: absolute
+    right: 10px
+    top: -11px
+    width: 30px
+    height: 30px
+    text-indent: -9999px
+    +img("bg/scrollup.png", "no-repeat") 
+
+// Contact Form
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.wpcf7
+  float: left
+  width: 100%
+
+  span
+    display: initial !important
+
+  input, textarea, select
+    width: 100%
+    resize: none
+
+  input[type="submit"]
+    display: block
+    width: 140px
+    height: 39px
+    border: 0
+    outline: none
+    text-indent: -999em
+    +img("bg/btn-enviar.jpg", "no-repeat")
+
+  span.wpcf7-not-valid-tip
+    display: block !important
+    padding-bottom: 2%
+
+  .wpcf7-not-valid
+    margin-bottom: 0
+    box-shadow: 0 0 5px rgba(210, 27, 26, 1)
+    border: 1px solid rgba(210, 27, 26, 1)
+
+  .area-radio
+    .two.label
+      width: 13%
+    .wpcf7-list-item
+      float: left
+      margin: 0 10px 0 0
+
+      input[type="radio"]
+        display: none
+      
+      input[type="radio"] + span
+        cursor: pointer
+        float: left
+        padding-left: 25px
+        color: #000
+        font-weight: normal
+        text-transform: none
+        +img("bg/radio.png", "no-repeat left center")
+
+      input[type="radio"]:checked + span
+        +img("bg/radio-checked.png", "no-repeat left center")
+
+  .area-checkbox
+    .two.label
+      width: 13%
+    .wpcf7-list-item
+      float: left
+      margin: 0 10px 0 0
+
+      input[type="checkbox"]
+        display: none
+      
+      input[type="checkbox"] + span
+        cursor: pointer
+        float: left
+        padding-left: 25px
+        color: #000
+        font-weight: normal
+        text-transform: none
+        +img("bg/checkbox.png", "no-repeat left center")
+
+      input[type="checkbox"]:checked + span
+        +img("bg/checkbox-checked.png", "no-repeat left center")
+
+
+// Gallery (Wordpress)
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.gb-gallery  
+  ul
+    list-style: none
+    text-align: center
+    
+    li
+      display: inline-table
+      margin-right: 4px
+      &:last-child, &:nth-child(5n)
+        margin-right: 0
+
+// 404 (Page)
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.page-404
+  h3
+    font-size: 18px
+    line-height: normal
+
+  .box
+    float: left
+    margin-top: 10px
+    width: 235px
+
+
+// Accordion
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.accordion
+  margin-top: 15px
+  float: left
+  width: 450px !important
+
+  p, *
+    text-indent: 0
+
+  dt
+    text-indent: 30px
+    margin-bottom: 10px
+    height: 22px
+    +img("bg/accordion-arrow.png", "no-repeat 0 -24px")
+
+    &.active
+      color: #ff0000
+      background-position: 0 0
+
+    dd
+      padding-left: 45px
+      margin-bottom: 15px
+
+// Search (Page)
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// .page-search
+
+
+// Pagination
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+.pagination
+  margin-top: 10px
+  text-align: center
+
+  ul
+    li
+      display: inline
+      padding-top: 3px
+
+      a, a:hover, &.active a, &.disabled
+        padding: 5px
+        color: inherit
+        cursor: pointer
+        text-decoration: none
+        color: $lyt_pagination_normal_color
+        background-color: $lyt_pagination_normal_background
+
+      a:hover, &.active a
+        color: $lyt_pagination_active_color      
+        background-color: $lyt_pagination_active_background
+
+      .next a, .prev a
+        display: inline-block
+        color: inherit
+        background: none
+
+        &:hover
+          color: inherit
+          text-decoration: underline
+          background: none
+
+      .prev
+        padding-right: 20px
+      .next
+        padding-left: 20px
+
+
+// Media Queries
+// ––––––––––––––––––––––––––––––––––––––––––––––––––  
+// Printers 
+@media print
+  .no-print
+    display: none
+
+// Smaller than standard 960 (devices and browsers)
+@media only screen and (max-width: 959px)
+  .banner
+    .container
+      height: auto
+      background: none
+    .wrap-banner
+      width: auto
+
+
+// All Mobile Sizes (devices and browser)
+@media only screen and (max-width: 767px)
+  .header
+    .container
+      div
+        margin: 0
+      .logo
+        margin: 0 auto  
+        width: 100%
+
+  .wrap
+    .container
+      padding: 0 20px !important // Corrigindo o padding da versao desktop
+
+  .footer
+    nav, .logo
+      display: none
+    .mmd
+      margin: 0
+    .scrollup
+      display: block
+
+  .gb-gallery
+    li
+      display: inline-block
+    img
+      width: 70px
+      height: 70px
+
+// Font-Face
+// ––––––––––––––––––––––––––––––––––––––––––––––––––
+// @include font("FontName")

@@ -1,0 +1,31 @@
+{% extends 'views/layout.twig' %}
+
+{% block content %}
+<div class="posts">
+
+  {% for post in posts %}
+  <div class="row item">
+    
+    <div class="row">
+      <div class="date">{{ post.post_date|date('d/m') }}</div>
+      <div class="title"><h2><a href="{{post.link}}" title="{{post.title}}">{{post.title}}</a></h2></div>
+      <div class="total-comments"><a href="{{post.link}}#comments">{{ post.comment_count }}</a></div>
+    </div>
+
+    <div class="row">
+      <figure class="three u-remove-right columns"> {{post.thumbnail}} </figure>
+      <div class="nine columns u-pull-right u-remove-left resumo">{{ fn('getExcerpt') }}</div>
+    </div>
+
+    <div class="row seemore">
+      <a href="{{post.link}}" title="Continue lendo {{post.title}}">Continue lendo</a>
+    </div>
+
+  </div>
+  <!-- e#item -->
+  {% endfor %}
+
+  <div class="row"> <div class="twelve columns pagination"> {{ fn('taraven_pagination') }} </div> </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,159 @@
+#blog
+  background: #000
+
+  .header
+    min-height: 130px
+    border-color: #f27b29
+
+    .busca
+      // margin: -20px 0 0 0
+      height: auto
+
+    // nav
+  // header
+
+  .banner .container
+    height: 250px
+
+  .wrap
+    padding-top: 20px
+    background-image: none
+    border-bottom: 15px solid #000
+
+    .sidebar
+      .flag
+        height: 25px
+        color: $yellow
+        font-weight: bold
+        text-align: center
+        text-transform: uppercase
+        +img("blog/blog-sidebar-flag.png", "no-repeat center")
+
+      .select
+        margin: 15px 0
+        text-align: center
+        background-color: #000
+
+        .text
+          color: #aaa
+          font-style: italic
+          font-size: 14px
+          padding: 3px
+          background-color: #ebebeb
+
+        select
+          margin: 10px auto
+          width: 80%
+          height: 34px
+
+      .mini-banners
+        .item
+          margin-bottom: 10px
+    // .sidebar
+
+    .posts
+      .item
+        margin-bottom: 20px
+
+        .date
+          float: left
+          width: 109px
+          height: 36px
+          color: #fff
+          text-indent: 21px
+          font-weight: 600
+          font-size: 23px
+          line-height: 34px
+          +img("blog/blog-date.png", "no-repeat center center")
+
+        .title
+          float: left
+          color: #000
+
+          h2
+            font-family: 'Raleway', sans-serif
+            padding: 0
+            margin: 0
+            font-weight: 600
+            font-size: 25px
+            text-indent: 10px
+            line-height: 40px
+
+        .total-comments
+          position: relative
+          bottom: -10px
+          float: right
+          width: 22px
+          height: 20px
+          color: $yellow
+          line-height: 15px
+          font-size: 13px
+          text-align: center
+          +img("blog/blog-total-comments.png", "no-repeat center center")
+
+        figure
+          text-align: center
+          overflow: hidden
+
+        .resumo
+          margin: 1em 0
+
+        .seemore
+          background-color: #ebebeb
+          a
+            float: right
+            padding: 3px 10px
+            color: $yellow
+            font-style: italic
+            background-color: #000
+        // .seemore
+      // .item
+
+      .pagination
+        ul
+          li        
+            a, &.disabled
+              color: #fff
+              background-color: #000
+
+            a:hover, &.active a
+              text-decoration: none
+              color: #000
+              background-color: $yellow
+      // .pagination
+
+      .post
+      //.post
+
+      .commentlist
+        .item
+          margin-bottom: 15px
+          border-bottom: 1px solid #58595b
+          &:last-child
+            border: 0
+
+          .comment
+            p
+              margin-bottom: 5px
+
+          .author
+            text-align: right
+            font-style: italic
+
+      form#commentform
+        input,textarea
+          width: 100%
+        textarea
+          resize: none
+          height: 146px
+        input#submit
+          width: auto
+          float: right
+    // .posts    
+  // wrap
+
+  .footer
+    border-top: 5px solid #fff
+    text-align: center
+    color: #fff
+// #blog

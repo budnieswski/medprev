@@ -1,0 +1,440 @@
+/*! Skeleton V2.0.4 | MIT License | www.getskeleton.com */
+
+// Breakpoints
+$ske_bp_larger_than_mobile    : "min-width: 400px" !default
+$ske_bp_larger_than_phablet   : "min-width: 550px" !default
+$ske_bp_larger_than_tablet    : "min-width: 750px" !default
+$ske_bp_larger_than_desktop   : "min-width: 1000px" !default
+$ske_bp_larger_than_desktophd : "min-width: 1200px" !default
+
+// calculates individual column width based off of # of columns
+$ske_column_width: 100 / $ske_total_columns !default
+
+// Functions
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// @function grid_size($n)
+//   @return $ske_column_width * $n - ($ske_column_margin*($ske_total_columns - $n)/$ske_total_columns)
+  
+=ske_offset($name, $n)
+  $value: $ske_column_width * $n - ($ske_column_margin*($ske_total_columns - $n)/$ske_total_columns)
+  $value: $value + $ske_column_margin
+  
+  .offset-by-#{$name}.column,
+  .offset-by-#{$name}.columns
+    margin-left: $value
+
+=ske_columns($name, $n)
+  $value: $ske_column_width * $n - ($ske_column_margin*($ske_total_columns - $n)/$ske_total_columns)
+  
+  .column.#{$name},
+  .columns.#{$name}
+    width: $value
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+
+
+// Grid
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.container
+  position: relative
+  width: 100%
+  max-width: $ske_max_width
+  margin: 0 auto
+  padding: 0 20px
+  box-sizing: border-box
+
+.column, .columns
+  width: 100%
+  float: left
+  box-sizing: border-box 
+
+// For devices larger than 400px
+@media ( #{$ske_bp_larger_than_mobile} )
+  .container
+    width: $ske_container_width_larger_than_mobile
+    padding: 0
+
+// For devices larger than 550px
+@media ( #{$ske_bp_larger_than_phablet} )
+  .container
+    width: $ske_container_width_larger_than_phablet
+  .column, .columns
+    margin-left: $ske_column_margin 
+  .column:first-child, .columns:first-child
+    margin-left: 0 
+
+  // Conjunts element without "row"
+  .one-third:nth-child(3n+1),
+  .two-thirds:nth-child(3n),
+  .one-half:nth-child(3n),
+  .three:nth-child(4n+1)
+    margin-left: 0
+
+  // Columns
+  +ske_columns("one",     1)
+  +ske_columns("two",     2)
+  +ske_columns("three",   3)
+  +ske_columns("four",    4)
+  +ske_columns("five",    5)
+  +ske_columns("six",     6)
+  +ske_columns("seven",   7)
+  +ske_columns("eight",   8)
+  +ske_columns("nine",    9)
+  +ske_columns("ten",     10)
+  +ske_columns("eleven",  11)
+  .twelve.columns
+    width: 100%
+    margin-left: 0
+  +ske_columns("one-third",  4)
+  +ske_columns("two-thirds",  8)
+  +ske_columns("one-half",  6)
+
+  // Offsets
+  +ske_offset("one",          1)
+  +ske_offset("two",          2)
+  +ske_offset("three",        3)
+  +ske_offset("four",         4)
+  +ske_offset("five",         5)
+  +ske_offset("six",          6)
+  +ske_offset("seven",        7)
+  +ske_offset("eight",        8)
+  +ske_offset("nine",         9)
+  +ske_offset("ten",          10)
+  +ske_offset("eleven",       11)
+  +ske_offset("one-third",    4)
+  +ske_offset("two-third",    8)
+  +ske_offset("one-half",     6)
+
+
+// Base Styles
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+// NOTE
+// html is set to 62.5% so that all the REM measurements throughout Skeleton
+// are based on 10px sizing. So basically 1.5rem = 15px :)
+html
+  font-size: 62.5% 
+body
+  font-size: 1.5em // currently ems cause chrome bug misinterpreting rems on body element
+  line-height: 1.6
+  font-weight: 400
+  font-family: unquote($ske_font_family)
+  color: $ske_font_color 
+
+
+// Typography
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+h1, h2, h3, h4, h5, h6
+  margin-top: 0
+  margin-bottom: 2rem
+  font-weight: 300 
+h1
+  font-size: 4.0rem
+  line-height: 1.2
+  letter-spacing: -.1rem
+h2
+  font-size: 3.6rem
+  line-height: 1.2
+  letter-spacing: -.1rem 
+h3
+  font-size: 3.0rem
+  line-height: 1.3
+  letter-spacing: -.1rem 
+h4
+  font-size: 2.4rem
+  line-height: 1.3
+  letter-spacing: -.08rem 
+h5
+  font-size: 1.8rem
+  line-height: 1.5
+  letter-spacing: -.05rem 
+h6
+  font-size: 1.5rem
+  line-height: 1.6
+  letter-spacing: 0 
+
+// Larger than phablet
+@media (min-width: 550px)
+  h1
+    font-size: 5.0rem 
+  h2
+    font-size: 4.2rem 
+  h3
+    font-size: 3.6rem 
+  h4
+    font-size: 3.0rem 
+  h5
+    font-size: 2.4rem 
+  h6
+    font-size: 1.5rem 
+
+
+p
+  margin-top: 0 
+
+
+// Links
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+a
+  color: $ske_link_color
+  &:hover
+    color: darken($ske_link_color, 5%)
+
+
+// Buttons
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.button,
+button,
+input[type="submit"],
+input[type="reset"],
+input[type="button"]
+  display: inline-block
+  height: 38px
+  padding: 0 30px
+  color: $ske_secondary_color
+  text-align: center
+  font-size: 11px
+  font-weight: 600
+  line-height: 38px
+  letter-spacing: .1rem
+  text-transform: uppercase
+  text-decoration: none
+  white-space: nowrap
+  background-color: transparent
+  border-radius: $ske_global_radius
+  border: 1px solid $ske_border_color
+  cursor: pointer
+  box-sizing: border-box 
+.button:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+input[type="button"]:hover,
+.button:focus,
+button:focus,
+input[type="submit"]:focus,
+input[type="reset"]:focus,
+input[type="button"]:focus
+  color: $ske_dark_grey
+  border-color: lighten($ske_dark_grey, 33.3%)
+  outline: 0 
+.button.button-primary,
+button.button-primary,
+input[type="submit"].button-primary,
+input[type="reset"].button-primary,
+input[type="button"].button-primary
+  color: #FFF
+  background-color: $ske_primary_color
+  border-color: $ske_primary_color 
+.button.button-primary:hover,
+button.button-primary:hover,
+input[type="submit"].button-primary:hover,
+input[type="reset"].button-primary:hover,
+input[type="button"].button-primary:hover,
+.button.button-primary:focus,
+button.button-primary:focus,
+input[type="submit"].button-primary:focus,
+input[type="reset"].button-primary:focus,
+input[type="button"].button-primary:focus
+  color: #FFF
+  background-color: $ske_link_color
+  border-color: $ske_link_color 
+
+
+// Forms
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea,
+select
+  height: 38px
+  padding: 6px 10px // The 6px vertically centers text on FF, ignored by Webkit
+  background-color: #fff
+  border: 1px solid lighten($ske_border_color, 8.8%)
+  border-radius: $ske_global_radius
+  box-shadow: none
+  box-sizing: border-box 
+// Removes awkward default styles on some inputs for iOS
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="text"],
+input[type="tel"],
+input[type="url"],
+input[type="password"],
+textarea
+  -webkit-appearance: none
+  -moz-appearance: none
+  appearance: none 
+textarea
+  min-height: 65px
+  padding-top: 6px
+  padding-bottom: 6px 
+input[type="email"]:focus,
+input[type="number"]:focus,
+input[type="search"]:focus,
+input[type="text"]:focus,
+input[type="tel"]:focus,
+input[type="url"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus
+  border: 1px solid $ske_primary_color
+  outline: 0 
+label,
+legend
+  display: block
+  margin-bottom: .5rem
+  font-weight: 600 
+fieldset
+  padding: 0
+  border-width: 0 
+input[type="checkbox"],
+input[type="radio"]
+  display: inline 
+label > .label-body
+  display: inline-block
+  margin-left: .5rem
+  font-weight: normal 
+
+
+// Lists
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+ul
+  list-style: circle inside 
+ol
+  list-style: decimal inside 
+ol, ul
+  padding-left: 0
+  margin-top: 0 
+ul ul,
+ul ol,
+ol ol,
+ol ul
+  margin: 1.5rem 0 1.5rem 3rem
+  font-size: 90% 
+li
+  margin-bottom: 1rem 
+
+
+// Code
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+code
+  padding: .2rem .5rem
+  margin: 0 .2rem
+  font-size: 90%
+  white-space: nowrap
+  background: lighten($ske_light_grey, 6.4%)
+  border: 1px solid $ske_light_grey
+  border-radius: $ske_global_radius 
+pre > code
+  display: block
+  padding: 1rem 1.5rem
+  white-space: pre 
+
+
+// Tables
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+th,
+td
+  padding: 12px 15px
+  text-align: left
+  border-bottom: 1px solid $ske_light_grey 
+th:first-child,
+td:first-child
+  padding-left: 0 
+th:last-child,
+td:last-child
+  padding-right: 0 
+
+
+// Spacing
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+button,
+.button
+  margin-bottom: 1rem 
+input,
+textarea,
+select,
+fieldset
+  margin-bottom: 1.5rem 
+pre,
+blockquote,
+dl,
+figure,
+table,
+p,
+ul,
+ol,
+form
+  margin-bottom: 2.5rem 
+
+
+// Utilities
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.u-full-width
+  width: 100%
+  height: auto
+  box-sizing: border-box 
+.u-max-full-width
+  max-width: 100%
+  height: auto
+  box-sizing: border-box 
+.u-pull-right
+  float: right 
+.u-pull-left
+  float: left 
+.u-remove-right
+  margin-right: 0 
+.u-remove-left
+  margin-left: 0 
+
+
+// Misc
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+hr
+  margin-top: 3rem
+  margin-bottom: 3.5rem
+  border-width: 0
+  border-top: 1px solid $ske_light_grey 
+
+
+// Clearing
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Self Clearing Goodness
+.container:after,
+.row:after,
+.u-cf
+  content: ""
+  display: table
+  clear: both 
+
+
+
+// Media Queries
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// Note: The best way to structure the use of media queries is to create the queries
+// near the relevant code. For example, if you wanted to change the styles for buttons
+// on small devices, paste the mobile query code up in the buttons section and style it
+// there.
+
+// Larger than mobile
+@media (#{$ske_bp_larger_than_mobile})
+
+// Larger than phablet (also point when grid becomes active)
+@media (#{$ske_bp_larger_than_phablet})
+
+// Larger than tablet
+@media (#{$ske_bp_larger_than_tablet})
+
+// Larger than desktop
+@media (#{$ske_bp_larger_than_desktop})
+
+// Larger than Desktop HD
+@media (#{$ske_bp_larger_than_desktophd})

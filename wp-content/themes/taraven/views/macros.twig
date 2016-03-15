@@ -1,0 +1,18 @@
+{% macro menu(navigation, menuClass) %}
+	
+  {% if menuClass %}
+  	{% set menuClass = " class=\"#{menuClass}\"" %}
+  {% endif %}
+
+  <ul{{ menuClass }}>
+    {% for item in navigation %}
+      <li class="nav-main-item {{item.classes | join(' ')}}"><a class="nav-main-link" href="{{item.get_link}}">{{item.title}}</a>
+        
+        {% if item.get_children %}
+          {{ _self.menu(item.get_children, 'sub-menu') }}
+        {% endif %}
+        
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}

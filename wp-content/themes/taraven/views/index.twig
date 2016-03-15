@@ -1,0 +1,42 @@
+{% extends 'layout.twig' %}
+
+{% block content %}
+
+<div class="home">
+
+{# 
+ # Goood loop break line
+ #}
+{% if servicos %}
+<div class="row servicos">
+  {% for servico in servicos %}
+    {% if loop.first or (loop.index0 % 4) == 0 %} <div class="row"> {% endif %}
+
+    <div class="columns three item"> Nothing </div>
+  
+    {% if loop.last or ((loop.index0 + 1) % 4) == 0 %} </div> {% endif %}
+  {% endfor %}
+</div>
+{% endif %}
+
+<div class="row blog">
+  <h2>BLOG</h2>
+  <div class="row">
+
+    {% set blog = get_posts({'category':7, 'posts_per_page':3})  %}
+    {% for item in blog %}
+      <div class="one-third column">
+        <h3>{{item.title}}</h3>
+        <div class="summary">{{item.post_content|excerpt(15)}}</div>
+        <a href="{{item.link}}" class="seemore">Veja Mais</a>
+      </div>
+    {% endfor %}
+
+  </div>
+</div>
+<!-- #blog -->
+
+
+</div>
+
+{% endblock %}

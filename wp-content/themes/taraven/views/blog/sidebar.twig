@@ -1,0 +1,26 @@
+
+<div class="sidebar">
+
+  <div class="row flag">{{site.acf.blog_texto_flag}}</div>
+
+  <div class="row select">
+    <div class="text">{{site.acf.blog_texto_select}}</div>
+    <select name="categories" id="blog-categories">
+      <option value="">---</option>
+      {% for category in get_categories({'child_of' : 7, 'hide_empty' : 0, 'order':'ASC', 'orderby':'title'}) %}
+        <option value="{{ category.link }}">{{category.title}}</option>
+      {% endfor %}
+    </select>
+  </div>
+  
+  <div class="row mini-banners">
+    {% for item in site.acf.blog_itens %}
+    <div class="row item">
+      <a href="{{item.link}}" title="{{item.title}}">
+        <img src="{{item.imagem}}" alt="{{item.title}}" title="{{item.title}}" class="u-max-full-width">
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+
+</div>

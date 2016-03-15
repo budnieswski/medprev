@@ -1,0 +1,21 @@
+  /*
+  * Newsletter
+  */
+  {
+    if( $.validator ) {
+      $.extend($.validator.messages, {
+        required: "Este campo é obrigatorio.",
+        email: "Entre com um e-mail válido.",
+      });
+      $(".newsletter form").validate({      
+        rules: {
+          nn: {required: true}, // Nome
+          ne: {required: true, email: true}, // Email
+        }
+      });
+      $(".newsletter .enviar").click(function(){
+        _valid = $('.newsletter form').valid();
+        if (!_valid) { return false; }
+      });
+    }
+  }

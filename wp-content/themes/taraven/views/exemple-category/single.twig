@@ -1,0 +1,15 @@
+{% extends 'views/layout.twig' %}
+
+{% block content %}
+<div class="posts post">
+
+  {% if post %}
+  <div class="row"><h1>{{post.title}}</h1></div>
+  <div class="row">{{post.content}}</div>
+  
+  <div class="row">{% include "comments.twig" with {comments:post.get_comments()} %}</div>
+
+  {% endif %}
+
+</div>
+{% endblock %}

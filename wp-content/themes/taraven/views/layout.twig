@@ -1,0 +1,159 @@
+{% import 'views/macros.twig' as macros %}
+<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]--> <!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]--> <!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>{{ fn('wp_title') }}</title>
+  {# <meta name="author" content="Guilherme Budnieswski - Muito Mais Digital"> #}
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  {# CSS
+  ================================================== #}
+  {% for css in site.theme.css %}
+    {% if css matches '{^(http|https|//)}' %}
+      <link rel="stylesheet" href="{{ css }}">
+    {% else %}
+      <link rel="stylesheet" href="{{site.theme.link}}/assets/css/{{ css }}">
+    {% endif %}
+  {% endfor %}
+
+  <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
+
+  {# Favicons
+  ================================================== #}
+  <link rel="shortcut icon" href="{{ site.theme.link }}/assets/img/favicon/favicon.ico" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="57x57" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ site.theme.link }}/assets/img/favicon/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="{{ site.theme.link }}/assets/img/favicon/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ site.theme.link }}/assets/img/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{ site.theme.link }}/assets/img/favicon/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ site.theme.link }}/assets/img/favicon/favicon-16x16.png">
+  <link rel="manifest" href="{{ site.theme.link }}/assets/img/favicon/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="{{ site.theme.link }}/assets/img/favicon/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+
+  {{wp_head}}
+
+  {# Browser Update
+  ================================================== #}
+  <script> 
+  var $buoop = {c:2}; 
+  function $buo_f(){ 
+   var e = document.createElement("script"); 
+   e.src = "//browser-update.org/update.js"; 
+   document.body.appendChild(e);
+  };
+  try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+  catch(e){window.attachEvent("onload", $buo_f)}
+  </script> 
+</head>
+
+<body>
+  
+{# Header
+================================================== #}
+<div class="band header">
+  <div class="container">
+    
+    <div class="row">
+      <div class="five columns"> <a href="{{ site.url }}" class="block logo">LOGO</a> </div>
+      <div class="three columns telefone">
+      
+        <div class="row">
+          <div class="cidade">Curitiba - PR</div>
+          <div class="numero"><small>(41)</small> 1234.5678</div>
+        </div>
+        <div class="row">
+          <div class="cidade">Curitiba - PR</div>
+          <div class="numero"><small>(41)</small> 1234.5678</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <nav class="align-center nine columns">
+        {{ macros.menu(site.menu.header.get_items, '') }}        
+      </nav>
+
+      <div class="three columns search">
+        <form action="{{ site.url }}" method="GET">
+          <input type="text" name="s" id="s" value="{{fn('trim',fn('get_search_query'))}}" placeholder="">
+          <input type="submit" value="Enviar" class="sprite enviar">
+        </form>
+      </div>
+
+    </div>
+
+  </div> {# end container #}
+</div> {# end header #}
+
+{% if not site.is_mobile and fn('is_home') and fn('is_front_page')  %}
+{# Banner
+================================================== #}
+<div class="band banner slides">
+  <div class="container">
+    <div class="twelve columns u-cf">
+      <div class="wrap-banner">
+        <ul class="rslides"> {{ fn('taraven_acf_gallery') }} </ul>
+      </div>
+    </div>
+  </div> {# end container #}
+</div> {# end banner #}
+{% endif %}
+
+{# Wrap
+================================================== #}
+<div {{ fn('body_class', 'band wrap') }}>
+  <div class="container">
+    <div class="row"> <div class="twelve columns u-cf"> {{ fn('taraven_breadcrumb') }} </div> </div>
+
+    {% block content %}{% endblock %}
+
+  </div> {# end container #}
+</div> {# end wrap #}
+
+
+{# Footer
+================================================== #}
+<div class="band footer">
+  <div class="container">
+    <a href="#" class="scrollup">GoUp</a>
+    <div class="row">
+      <div class="twelve columns u-cf">
+        Rua XYZ
+
+        <div class="mmd">
+          <a href="http://muitomaisdigital.com.br/" target="__blank" title="Desenvolvimento de site em Curitiba">
+            <img src="{{ site.theme.link }}/assets/img/mmd-black.png" alt="Desenvolvimento de site em Curitiba" title="Desenvolvimento de site em Curitiba">
+          </a>
+        </div>
+      </div>
+    </div>
+
+  </div> {# end container #}
+</div> {# end footer #}
+
+
+{# JS
+================================================== #}
+{% for js in site.theme.js %}
+  {% if js matches '{^(http|https|//)}' %}
+    <script src="{{ js }}"></script>
+  {% else %}
+    <script src="{{ site.theme.link }}/assets/js/{{ js }}"></script>
+  {% endif %}
+{% endfor %}
+
+{{wp_footer}}
+</body>
+</html>

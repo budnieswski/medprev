@@ -1,0 +1,137 @@
+// -webkit-transition: all .10s ease
+// -moz-transition: all .10s ease
+// -ms-transition: all .10s ease
+// -o-transition: all .10s ease
+// transition: all .10s ease
+
+body
+  +img("bg/body.png", "repeat")
+
+@import client.blog.sass
+
+// Header
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.header
+  min-height: 215px
+  +img("bg/header.png", "repeat-x top center #fff")
+
+  .logo
+    width: 303px
+    height: 69px
+
+  .telefone
+    margin-top: 7px
+    color: #000
+    font-family: 'Oswald'
+    font-weight: bold
+    
+    .row
+      margin-bottom: 5px
+      padding-bottom: 5px
+      border-bottom: 1px solid $yellow
+      +img("bg/header-telefone.png", "no-repeat left 90%")
+      
+      &:last-child
+        border: 0
+    
+    .cidade
+      color: #454545
+      font-weight: normal
+      font-size: 15px
+      text-align: left
+
+    .numero
+      line-height: 25px
+
+  .search
+    margin-top: 12px
+
+    input
+      float: left
+      width: 79%
+      height: 40px
+      border-radius: 0
+      border: 0
+
+    #s
+      border-right: 0
+
+    .enviar
+      border: 0
+      float: left
+      position: relative
+      left: -3px
+      width: 21%
+      height: 40px
+      text-indent: -999em
+      padding: 12px 0 11px 0
+      +img("bg/header-search-btn.png", "no-repeat left center #fff")
+  // .search
+
+  nav
+    margin-top: 8px
+    font-family: 'Oswald'
+    background: $yellow
+
+// e#header
+
+
+// Banner
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.banner
+  +img("bg/banner.png", "repeat")
+.slides
+  .next, .prev
+    top: 43%
+    width: 44px
+    height: 43px
+    &:hover
+      opacity: 1
+
+  .next
+    background-position: -50px 0
+    &:hover
+      background-position: -50px 0
+  
+  .prev
+    &:hover
+      background-position: 0 0
+
+
+// Wrap
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.wrap
+  background: #fff
+
+  // #breadcrumbs
+  //   .breadcrumb_last
+
+
+// Contact Form
+.wpcf7
+  input[type="submit"]
+    float: none
+    margin: 0 auto
+    width: 229px
+    height: 57px
+  textarea
+    height: 150px
+
+
+// Footer
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+.footer
+  padding: 15px 0
+  
+  .scrollup
+    // display: block
+    right: 0
+    width: 45px
+    height: 43px
+    top: -42px
+
+// Media Queries
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// All Mobile Sizes (devices and browser)
+// @media only screen and (max-width: 767px)

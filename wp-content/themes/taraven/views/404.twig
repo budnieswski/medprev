@@ -1,0 +1,9 @@
+{% extends 'views/index.twig' %}
+
+{% block content %}
+<div class="page-404">
+  <div class="twelve columns"> <h1>Página não encontrada</h1> </div>
+  <div class="twelve columns"> A Página que você buscou não existe. Navegue pelo site através dos links abaixo: </div>
+  <div class="twelve columns"> {{ fn('taraven_get_sitemap') }} </div>
+</div>
+{% endblock %}

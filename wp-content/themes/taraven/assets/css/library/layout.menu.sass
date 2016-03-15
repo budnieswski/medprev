@@ -1,0 +1,202 @@
+// Default / Reset
+ul, ul li, ul li a, #menu-button
+  position: relative
+  display: block
+  margin: 0
+  padding: 0
+  border: 0
+  list-style: none
+  line-height: 1
+  -webkit-box-sizing: border-box
+  -moz-box-sizing: border-box
+  box-sizing: border-box
+  z-index: 999
+
+&:after,
+> ul:after
+  content: "."
+  display: block
+  clear: both
+  visibility: hidden
+  line-height: 0
+  height: 0
+
+#menu-button
+  display: none
+
+> ul > li
+  float: left
+// End default / reset
+
+// Extra align
+&.align-center > ul
+  font-size: 0
+  text-align: center
+
+&.align-center > ul > li
+  display: inline-block
+  float: none
+
+&.align-center ul ul
+  text-align: left
+
+&.align-right > ul > li
+  float: right
+
+&.align-right ul ul
+  text-align: right
+
+&.align-right li:hover > ul
+  left: auto
+  right: 0
+
+&.align-right ul ul ul
+  margin-left: 0
+  margin-right: 100%  
+
+&.align-right ul ul li.has-sub > a:after
+  right: auto
+  left: 11px
+
+&.align-right ul ul li.has-sub > a:before
+  right: auto
+  left: 14px
+// End extra align
+
+// Primary
+> ul > li
+  > a
+    padding: 17px
+    color: #000
+    font-size: 16px
+    font-weight: 700
+    letter-spacing: 1px
+    text-decoration: none
+    text-transform: uppercase
+  &:hover > a,
+  &.current_page_item > a,
+  &.current-menu-item > a,
+  &.current-post-ancestor > a,
+  &.current-menu-parent > a,
+  &.current-post-parent > a
+    text-decoration: underline
+
+  &.has-sub
+    > a
+      padding-right: 30px
+      &:after
+        position: absolute
+        display: block
+        top: 22px
+        right: 11px
+        width: 8px
+        height: 2px
+        background: #000
+        content: ''
+      &:before
+        position: absolute
+        top: 19px
+        right: 14px
+        display: block
+        width: 2px
+        height: 8px
+        background: #000
+        content: ''
+        -webkit-transition: all .25s ease
+        -moz-transition: all .25s ease
+        -ms-transition: all .25s ease
+        -o-transition: all .25s ease
+        transition: all .25s ease
+
+    // Plus color when hover/active
+    &:hover,
+    &.current_page_item,
+    &.current-menu-item,
+    &.current-post-ancestor,
+    &.current-menu-parent,
+    &.current-post-parent
+      > a:before,
+      > a:after
+        background-color: #000
+
+    &:hover > a:before
+      top: 23px
+      height: 0
+// End primary
+
+// Sub menu
+li:hover > ul
+  left: auto
+
+li:hover > ul > li
+  height: auto
+
+ul ul
+  position: absolute
+  left: -9999px
+  
+  ul
+    margin-left: 100%
+    top: 0
+
+  /* All child link */
+  li
+    height: 0
+    -webkit-transition: all .25s ease
+    -moz-transition: all .25s ease
+    -ms-transition: all .25s ease
+    -o-transition: all .25s ease
+    transition: all .25s ease
+
+    a
+      // border-bottom: 1px solid #000
+      padding: 11px 15px
+      width: 230px
+      font-size: 15px
+      text-decoration: none
+      color: #000
+      font-weight: 400
+      background: #f7c51e
+    &:last-child > a,
+    &.last-item > a
+      // border: 0
+    
+    &:hover > a,
+    &.current_page_item > a,
+    &.current-menu-item > a,
+    &.current-post-ancestor > a,
+    &.current-menu-parent > a,
+    &.current-post-parent > a,
+    a:hover
+      text-decoration: underline
+
+    // Icon plus
+    &.has-sub > a:after
+      position: absolute
+      top: 16px
+      right: 11px
+      width: 8px
+      height: 2px
+      display: block
+      background: #000
+      content: ''
+    
+    &.has-sub > a:before
+      position: absolute
+      top: 13px
+      right: 14px
+      display: block
+      width: 2px
+      height: 8px
+      background: #000
+      content: ''
+      -webkit-transition: all .25s ease
+      -moz-transition: all .25s ease
+      -ms-transition: all .25s ease
+      -o-transition: all .25s ease
+      transition: all .25s ease      
+
+  > li.has-sub:hover > a:before
+    top: 17px
+    height: 0
+// End sub menu
