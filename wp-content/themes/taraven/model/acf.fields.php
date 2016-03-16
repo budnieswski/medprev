@@ -3,7 +3,7 @@
 /*
 * ACF
 */
-  $especialidades = get_field('especialidades', 41);
+  $especialidades = get_field('especialidades', 50);
   $field_especialidades = array();
   if( !empty($especialidades) ):
     foreach ($especialidades AS $especialidade) {
@@ -11,7 +11,7 @@
     }
   endif;
 
-  $exames = get_field('exames', 43);
+  $exames = get_field('exames', 51);
   $field_exames = array();
   if( !empty($exames) ):
     foreach ($exames AS $exame) {
