@@ -5,19 +5,22 @@
 // transition: all .10s ease
 
 body
-  +img("bg/body.png", "repeat")
+  color: $black
+  background: $gray
 
 @import client.blog.sass
 
 // Header
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 .header
-  min-height: 215px
-  +img("bg/header.png", "repeat-x top center #fff")
+  +img("bg/header.png", "repeat")
+  background-color: $gray
+  border-top: 4px solid $green_dark
+  border-bottom: 4px solid $blue
 
   .logo
-    width: 303px
-    height: 69px
+    width: 331px
+    height: 135px
 
   .telefone
     margin-top: 7px
@@ -42,10 +45,22 @@ body
 
     .numero
       line-height: 25px
+// e#header
+
+  
+//
+.menu
+  background: #fff
+  padding: 1% 0
+  
+  .color-range
+    background: $gray
+
+  nav
+    font-family: 'Oswald'
+    background: $yellow
 
   .search
-    margin-top: 12px
-
     input
       float: left
       width: 79%
@@ -68,19 +83,13 @@ body
       +img("bg/header-search-btn.png", "no-repeat left center #fff")
   // .search
 
-  nav
-    margin-top: 8px
-    font-family: 'Oswald'
-    background: $yellow
-
-// e#header
 
 
 // Banner
 //––––––––––––––––––––––––––––––––––––––––––––––––––
-.banner
-  +img("bg/banner.png", "repeat")
 .slides
+  +img("bg/banner.png", "repeat-x center center")
+  background-color: #fff
   .next, .prev
     top: 43%
     width: 44px
@@ -124,11 +133,11 @@ body
   padding: 15px 0
   
   .scrollup
-    // display: block
+    display: block
     right: 0
-    width: 45px
-    height: 43px
-    top: -42px
+    width: 55px
+    height: 65px
+    top: -30px
 
 // Media Queries
 //––––––––––––––––––––––––––––––––––––––––––––––––––

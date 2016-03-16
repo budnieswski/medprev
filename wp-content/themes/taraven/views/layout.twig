@@ -78,24 +78,36 @@
         </div>
 
       </div>
-    </div>
-
-    <div class="row">
-      <nav class="align-center nine columns">
-        {{ macros.menu(site.menu.header.get_items, '') }}        
-      </nav>
-
-      <div class="three columns search">
-        <form action="{{ site.url }}" method="GET">
-          <input type="text" name="s" id="s" value="{{fn('trim',fn('get_search_query'))}}" placeholder="">
-          <input type="submit" value="Enviar" class="sprite enviar">
-        </form>
-      </div>
-
-    </div>
+    </div>    
 
   </div> {# end container #}
 </div> {# end header #}
+
+
+{# Menu
+================================================== #}
+<div class="band menu">
+
+  <div class="color-range">
+    <div class="container">    
+      <div class="row">
+        <nav class="align-center nine columns">
+          {{ macros.menu(site.menu.header.get_items, '') }}        
+        </nav>
+    
+        <div class="three columns search">
+          <form action="{{ site.url }}" method="GET">
+            <input type="text" name="s" id="s" value="{{fn('trim',fn('get_search_query'))}}" placeholder="">
+            <input type="submit" value="Enviar" class="sprite enviar">
+          </form>
+        </div>
+    
+      </div>
+    </div> {# end container #}
+  </div>
+
+</div> {# end Menu #}
+
 
 {% if not site.is_mobile and fn('is_home') and fn('is_front_page')  %}
 {# Banner

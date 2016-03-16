@@ -1,6 +1,6 @@
 jQuery(function($){
 
-  $(".header nav").menumaker({
+  $(".menu nav").menumaker({
     title: "Menu",
     format: "multitoggle"
   });
@@ -18,7 +18,7 @@ jQuery(function($){
   }); 
 
   // Remove link from 'empty links'
-  $(".header nav > ul > li a").each(function(){
+  $(".menu nav > ul > li a").each(function(){
     if( $(this).attr('href')=='#' ){
       $(this).removeAttr('href');
       $(this).css('cursor', 'pointer');
