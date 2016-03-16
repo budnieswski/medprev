@@ -1,4 +1,5 @@
 <?php
+require(dirname(__FILE__).'/acf.fields.php');
 
 // if ( function_exists( 'add_image_size' ) ) {
 //   add_image_size('thumb-350x250', 350, 250, true);

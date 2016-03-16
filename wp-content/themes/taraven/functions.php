@@ -33,7 +33,7 @@ Class MyTheme extends Taraven {
           // 'lib/google.maps.js',
       ),
       'menu' => array('Header'),
-      'acf' => array('Default Site'),
+      'acf' => array('Default', 'Home'),
       'blog' => false,
     );
     
