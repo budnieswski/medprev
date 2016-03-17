@@ -66,15 +66,17 @@
     
     <div class="row">
       <div class="five columns"> <a href="{{ site.url }}" class="block logo">LOGO</a> </div>
-      <div class="three columns telefone">
-      
-        <div class="row">
-          <div class="cidade">Curitiba - PR</div>
-          <div class="numero"><small>(41)</small> 1234.5678</div>
-        </div>
-        <div class="row">
-          <div class="cidade">Curitiba - PR</div>
-          <div class="numero"><small>(41)</small> 1234.5678</div>
+      <div class="three columns unidade u-pull-right">
+        <h4 class="row">Selecione uma unidade</h4>
+        <select class="row" name="unidade">
+          <option value="">---</option>
+          <option value="">Parana</option>
+          <option value="">São Paulo</option>
+          <option value="">Santos</option>
+        </select>
+        <div class="row telefone">
+          <small>(41)</small> 1234-1234<br>
+          <small>(41)</small> 1234-1234
         </div>
 
       </div>
@@ -91,13 +93,13 @@
   <div class="color-range">
     <div class="container">    
       <div class="row">
-        <nav class="align-center nine columns">
+        <nav class="nine columns">
           {{ macros.menu(site.menu.header.get_items, '') }}        
         </nav>
     
         <div class="three columns search">
           <form action="{{ site.url }}" method="GET">
-            <input type="text" name="s" id="s" value="{{fn('trim',fn('get_search_query'))}}" placeholder="">
+            <input type="text" name="s" id="s" value="{{fn('trim',fn('get_search_query'))}}" placeholder="Digite sua busca ...">
             <input type="submit" value="Enviar" class="sprite enviar">
           </form>
         </div>
@@ -138,18 +140,24 @@
 {# Footer
 ================================================== #}
 <div class="band footer">
-  <div class="container">
-    <a href="#" class="scrollup">GoUp</a>
-    <div class="row">
-      <div class="twelve columns u-cf">
-        Rua XYZ
 
-        <div class="mmd">
-          <a href="http://muitomaisdigital.com.br/" target="__blank" title="Desenvolvimento de site em Curitiba">
-            <img src="{{ site.theme.link }}/assets/img/mmd-black.png" alt="Desenvolvimento de site em Curitiba" title="Desenvolvimento de site em Curitiba">
-          </a>
-        </div>
+  <div class="color-range">
+    <div class="container">
+      <a href="#" class="scrollup">GoUp</a>
+      <div class="row">
+        <nav class="align-center">
+          {{ macros.menu(site.menu.header.get_items, '') }}        
+        </nav>
       </div>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <div class="row mmd">
+      <a href="http://muitomaisdigital.com.br/" target="__blank" title="Desenvolvimento de site em Curitiba">
+        <img src="{{ site.theme.link }}/assets/img/mmd-black.png" alt="Desenvolvimento de site em Curitiba" title="Desenvolvimento de site em Curitiba">
+      </a>
     </div>
 
   </div> {# end container #}
