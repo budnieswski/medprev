@@ -25,7 +25,7 @@ jQuery(function($){
     }
   });
 
-  $(".header .your-unidade").change(function(){
+  $('.header select[name="your-unidade"]').change(function(){
     var o = $(this).val();
     if (o!="" && o!=0) {
       window.location.href = o;
