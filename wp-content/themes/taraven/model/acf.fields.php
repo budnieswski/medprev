@@ -295,7 +295,7 @@
         array (
           'param' => 'post_category',
           'operator' => '==',
-          'value' => 'category:unidade',
+          'value' => 'category:unidades',
         ),
       ),
     ),

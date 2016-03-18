@@ -68,12 +68,7 @@
       <div class="five columns"> <a href="{{ site.url }}" class="block logo">LOGO</a> </div>
       <div class="three columns unidade u-pull-right">
         <h4 class="row">Selecione uma unidade</h4>
-        <select class="row" name="unidade">
-          <option value="">---</option>
-          <option value="">Parana</option>
-          <option value="">São Paulo</option>
-          <option value="">Santos</option>
-        </select>
+        <div class="row"> {{fn('do_shortcode', '[select-unidades showvalue="url"]')}} </div>
         <div class="row telefone">
           <small>(41)</small> 1234-1234<br>
           <small>(41)</small> 1234-1234

@@ -25,12 +25,20 @@ jQuery(function($){
     }
   });
 
+  $(".header .your-unidade").change(function(){
+    var o = $(this).val();
+    if (o!="" && o!=0) {
+      window.location.href = o;
+    }
+  });
+
 
   /*
   * Input Masks
   */
   {
     // Phone
+    $("input[name*='your-cpf']").setMask({mask: "999.999.999-99"});
     $("input[name*='your-phone']").setMask({mask: "(99) 9999-9999"});
     $("input[name*='your-phone']").keyup(function () {
       var t = $(this),

@@ -5,18 +5,101 @@ require(dirname(__FILE__).'/acf.fields.php');
 //   add_image_size('thumb-350x250', 350, 250, true);
 // }
 
-// add_filter('image_size_names_choose', 'my_image_sizes');
-// function my_image_sizes($sizes) {
-//   $addsizes = array(
-//   "thumb-350x250" => __( "Middle Medium")
-//   );
-//   $newsizes = array_merge($sizes, $addsizes);
-//   return $newsizes;
-// }
+
+
+/**
+ * Create a Unidades select, according the necessity
+ * @param  string $atts    showvalue (email/id/url), wpcf7 (true/false), required (true/false)
+ * @param  string $content [description]
+ * @return HTML
+ */
+function sc_select_unidades ($atts='', $content="")
+{
+  $show_value_options = array('email', 'id', 'url');
+
+  // Check if have showvalue, if have, check if is valid (in array)
+  $show_value = empty($atts['showvalue']) ? 'id' : (in_array($atts['showvalue'], $show_value_options) ? $atts['showvalue'] : 'id');
+  $wpcf7_style = empty($atts['wpcf7']) ? 'false' : $atts['wpcf7'];
+  $required = empty($atts['required']) ? 'false' : $atts['wpcf7'];
+
+  $categeries = get_categories(array(
+    'child_of' => 2,
+    // 'hide_empty' => 0,
+  ));
+
+  $output = "<option value=\"\">---</option>";
+  foreach ($categeries AS $category) {
+    $output .= "<optgroup label=\"{$category->name}\">";
+
+    $_posts = get_posts(array('category'=>$category->term_id, 'posts_per_page'=>-1, 'orderby'=>'title', 'order'=>'ASC'));
+    if (empty($_posts)) {
+      $output .= "<option value=\"\">--</option>";
+      $output .= "</optgroup>";
+      continue;
+    }
+
+    foreach ($_posts AS $_post) {
+      $data = "";
+      if($show_value=='url')
+      {
+        $data = get_permalink($_post->ID);
+      } else if($show_value=='email')
+      {
+        $data = get_field('email', $_post->ID);
+      } else
+      {
+        $data = $_post->ID;
+      }
+
+      $output .= "<option value=\"{$data}\">{$_post->post_title}</option>";
+    }
+
+    $output .= "</optgroup>";
+  }
+
+  $attr = "";
+  $class = "";
+
+  // Only if not WPCF7
+  if($required!='false' && $wpcf7_style=='false')
+  {
+    $attr .= "required=\"required\"";
+  }
+
+  // Is WPCF7
+  if($wpcf7_style!='false')
+  {
+    $class = "wpcf7-form-control wpcf7-select";
+    $attr .= "aria-invalid=\"false\" ";
+    
+    if($required!='false')
+    {
+      $class .= " wpcf7-validates-as-required";
+      $attr .= "aria-required=\"true\" ";
+    }
+  }  
+  
+  $output = "<select name=\"your-unidade\" class=\"{$class}\" {$attr}>{$output}</select>";
+
+
+  if($wpcf7_style!='false')
+    $output = "<span class=\"wpcf7-form-control-wrap your-unidade\">{$output}</span>";
+
+  return $output;
+}
 
 /*
-* Theme Custom Functions 
-*/
+ * Add Wordpress shortcode
+ */
+add_shortcode('select-unidades', 'sc_select_unidades');
+
+/*
+ * Add Contact form 7 shortcode
+ */
+function dynamic_unidades(){
+  return do_shortcode('[select-unidades wpcf7="true" showvalue="email" required="true"]');
+}
+wpcf7_add_shortcode('unidades', 'dynamic_unidades', true);
 
 
 /*
