@@ -116,24 +116,114 @@ body
 .wrap
   background: #fff
 
-  // #breadcrumbs
-  //   .breadcrumb_last
+  .container
+    padding-top: 0
 
+  #breadcrumbs
+    margin: 0
+    .breadcrumb_last
+      color: $green
+      text-decoration: none
+      text-transform: uppercase
+
+  h1
+    text-align: center
+    font-size: 30px
+    text-transform: uppercase
+    margin-bottom: 4%
+    &:before
+      position: relative
+      top: 15px
+      padding-right: 1.5%
+      content: url('../img/icon/exam.png')
+
+  &.page-especialidades
+    h1:before
+      content: url('../img/icon/doctor.png')
+
+  &.page-exames
+    ul.busca
+      padding: 0.5% 0
+      list-style: none
+      text-align: center
+      background: $green
+      li
+        display: inline-block
+        color: $green_dark
+        text-transform: uppercase
+
+        &:last-child
+          a:after
+            content: ''
+        a
+          display: block
+          width: 100%
+          padding: 1% 6px 
+          font-weight: bold
+          &:after
+            content: ' | '
+            float: right
+            position: relative
+            top: -2px
+            color: #fff
+          &:hover
+            color: #fff
+            text-decoration: none
+    
+    .itens
+      .letra
+        margin-bottom: 1%
+        span
+          color: #fff
+          padding: 0 10px
+          font-size: 30px
+          font-weight: bold
+          background: $green
+          -webkit-border-radius: 50px
+          -moz-border-radius: 50px
+          border-radius: 50px
+      .item
+        margin-bottom: 2%
+        h2
+          text-indent: 10%
+          color: $green_dark
+      .exames
+        margin-bottom: 4%
 
 // Contact Form
 .wpcf7
+  +placeholder_color($black)
+  
+  input, select, textarea
+    border-radius: 0
+    margin-bottom: 3%
+
+  select
+    text-indent: 7px
+
+  textarea
+    height: 200px
+    padding: 7px
+
   input[type="submit"]
     float: none
     margin: 0 auto
-    width: 229px
-    height: 57px
-  textarea
-    height: 150px
+    width: auto
+    height: auto
+    text-indent: 0
+    font-size: 18px
+    color: #fff
+    background: $green_dark
+    -webkit-border-radius: 5px
+    -moz-border-radius: 5px
+    border-radius: 5px
+  
 
 
 // Footer
 //––––––––––––––––––––––––––––––––––––––––––––––––––
 .footer
+  border-top: 2px solid $green_dark
   padding: 15px 0
 
   .color-range

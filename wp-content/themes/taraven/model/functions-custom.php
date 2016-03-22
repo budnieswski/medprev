@@ -9,7 +9,7 @@ require(dirname(__FILE__).'/acf.fields.php');
 
 /**
  * Create a Unidades select, according the necessity
- * @param  string $atts    showvalue (email/id/url), wpcf7 (true/false), required (true/false)
+ * @param  string $atts    showvalue (email/id/url), wpcf7 (true/false), required (true/false), emptytext (text)
  * @param  string $content [description]
  * @return HTML
  */
@@ -20,14 +20,15 @@ function sc_select_unidades ($atts='', $content="")
   // Check if have showvalue, if have, check if is valid (in array)
   $show_value = empty($atts['showvalue']) ? 'id' : (in_array($atts['showvalue'], $show_value_options) ? $atts['showvalue'] : 'id');
   $wpcf7_style = empty($atts['wpcf7']) ? 'false' : $atts['wpcf7'];
-  $required = empty($atts['required']) ? 'false' : $atts['wpcf7'];
+  $required = empty($atts['required']) ? 'false' : $atts['required'];
+  $emptytext = empty($atts['emptytext']) ? '---' : $atts['emptytext'];
 
   $categeries = get_categories(array(
     'child_of' => 2,
     // 'hide_empty' => 0,
   ));
 
-  $output = "<option value=\"\">---</option>";
+  $output = "<option value=\"\">{$emptytext}</option>";
   foreach ($categeries AS $category) {
     $output .= "<optgroup label=\"{$category->name}\">";
 
@@ -76,6 +77,7 @@ function sc_select_unidades ($atts='', $content="")
     {
       $class .= " wpcf7-validates-as-required";
       $attr .= "aria-required=\"true\" ";
+      $attr .= "required=\"required\"";
     }
   }  
   
@@ -97,7 +99,7 @@ add_shortcode('select-unidades', 'sc_select_unidades');
  * Add Contact form 7 shortcode
  */
 function dynamic_unidades(){
-  return do_shortcode('[select-unidades wpcf7="true" showvalue="email" required="true"]');
+  return do_shortcode('[select-unidades wpcf7="true" showvalue="email" required="true" emptytext="UNIDADE (OBRIGATÓRIO)"]');
 }
 wpcf7_add_shortcode('unidades', 'dynamic_unidades', true);
 
@@ -124,16 +126,22 @@ add_shortcode('contato', 'sc_contato');
 /*
 * Dinamic Advanced Custom Fields MAP
 */
-function sc_mapa ($atts='', $content="") {
+function sc_exames ($atts='', $content="") {
 
-  $location = get_field('mapa');
-  if( !empty($location) ){
-    return Timber::compile('shortcode.mapa.twig', array('location' => $location));
+  $exames = get_field('exames');
+  if( !empty($exames) ){
+    asort($exames); // Ordena
+    $data = array();
+    foreach ($exames as $exame) {
+      $firstLetter = $exame['exame'][0];
+      $data[ $firstLetter ][] = $exame['exame'];
+    }
+    return Timber::compile('shortcode.exames.twig', array('exames'=>$data));
   } else {
     return false;
   }
 }
-add_shortcode('mapa', 'sc_mapa');
+add_shortcode('exames', 'sc_exames');
 
 /*
 * Remove WPSEO getting images from POST

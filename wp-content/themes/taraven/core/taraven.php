@@ -80,8 +80,14 @@ Class Taraven extends TimberSite {
   // Add Category Name to body_class
   function body_class_add_categories( $classes ) {
    
+    if ( is_page() ){
+      global $post;
+      $classes[] = 'page-' . $post->post_name;
+
+      return $classes;
+    }
     // Only proceed if we're on a single post page
-    if ( !is_single() )
+    if ( is_single() )
       return $classes;
    
     // Get the categories that are assigned to this post

@@ -26,6 +26,7 @@ Class MyTheme extends Taraven {
           // 'lib/jssor.slider.js',
           // 'lib/stick.min.js',
           'lib/jquery.menumaker.js',
+          'lib/velocity.min.js',
           // 'http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?ver=1.0.0',
           'main.js',
           // For use Advanced Custom Fields Maps

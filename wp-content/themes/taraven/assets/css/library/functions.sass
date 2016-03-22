@@ -1,6 +1,9 @@
 =img($path, $options:null)
   background: url("../img/#{$path}") unquote($options)
 
+=img_url($path)
+  url("../img/#{$path}")
+
 
 =font($fontName)
   @font-face
