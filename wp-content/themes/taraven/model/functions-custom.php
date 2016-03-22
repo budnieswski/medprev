@@ -5,8 +5,6 @@ require(dirname(__FILE__).'/acf.fields.php');
 //   add_image_size('thumb-350x250', 350, 250, true);
 // }
 
-
-
 /**
  * Create a Unidades select, according the necessity
  * @param  string $atts    showvalue (email/id/url), wpcf7 (true/false), required (true/false), emptytext (text)
@@ -104,6 +102,12 @@ function dynamic_unidades(){
 wpcf7_add_shortcode('unidades', 'dynamic_unidades', true);
 
 
+
+
+
+
+
+
 /*
 * Dinamic Contact form and Map together
 */
@@ -128,11 +132,28 @@ add_shortcode('contato', 'sc_contato');
 */
 function sc_exames ($atts='', $content="") {
 
-  $exames = get_field('exames');
-  if( !empty($exames) ){
-    asort($exames); // Ordena
+  $filter = get_query_var('unidade_filter');
+  $itens = get_field('exames');
+
+  if (!empty($filter)) {
+    // Pega do post com o filter substituindo $itens]
+    $_post = get_page_by_path($filter,OBJECT,'post');
+    if ($_post && !empty($_post)) {
+      $nitens = get_field('exames', $_post->ID);
+      if (!empty($nitens)) {
+        $itens = array();
+        foreach ($nitens AS $value) {
+          $itens[]['exame'] = str_replace(':','',base64_decode($value));
+        }
+      }
+    }
+  }
+
+  
+  if( !empty($itens) ){
+    asort($itens); // Ordena
     $data = array();
-    foreach ($exames as $exame) {
+    foreach ($itens as $exame) {
       $firstLetter = $exame['exame'][0];
       $data[ $firstLetter ][] = $exame['exame'];
     }
