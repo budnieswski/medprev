@@ -164,6 +164,53 @@ function sc_exames ($atts='', $content="") {
 }
 add_shortcode('exames', 'sc_exames');
 
+
+/*
+* Dinamic Advanced Custom Fields MAP
+*/
+function sc_especialidades ($atts='', $content="") {
+
+  $filter = get_query_var('unidade_filter');
+  $itens = get_field('especialidades');
+
+  if (!empty($filter)) {
+    // Pega do post com o filter substituindo $itens]
+    $_post = get_page_by_path($filter,OBJECT,'post');
+    if ($_post && !empty($_post)) {
+      $nitens = get_field('especialidades', $_post->ID);
+      if (!empty($nitens)) {
+        $itens = array();
+        foreach ($nitens AS $value) {
+
+          // Interligado com o ACF, por isso esta encodado
+          $itens[]['especialidade'] = base64_decode($value);
+        }
+      }
+    }
+  }
+
+  
+  if( !empty($itens) ){
+    asort($itens); // Ordena
+    $data = array();
+    foreach ($itens as $key => $item) {
+      $firstLetter = $item['especialidade'][0];
+      $item = explode(':', $item['especialidade']);
+      $content = array(
+        'nome'        => trim($item[0]),
+        'descricao'   => trim($item[1]),
+      );
+      $data[ $firstLetter ][] = $content;
+    }
+    return Timber::compile('shortcode.especialidades.twig', array('especialidades'=>$data));
+  } else {
+    return false;
+  }
+}
+add_shortcode('especialidades', 'sc_especialidades');
+
+
+
 /*
 * Remove WPSEO getting images from POST
 */

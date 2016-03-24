@@ -1,0 +1,21 @@
+<div class="row"><strong>BUSQUE PELA INICIAL DA ESPECIALIDADE:</strong></div>
+
+<ul class="row busca">
+  {% for lt in 'a'..'z' %}
+    <li><a href="#{{ lt|upper }}">{{ lt }}</a></li>
+  {% endfor %}
+</ul>
+
+<div class="row itens">
+  {% for key, letra in especialidades %}
+    <div class="row letra" id="{{key}}"><span>{{key}}</span></div>
+    <div class="row itens">
+      {% for e in letra %}
+        <div class="three columns item">
+          <h2 class="row">{{e.nome}}</h2>
+          <div class="row descricao">{{e.descricao}}</div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
