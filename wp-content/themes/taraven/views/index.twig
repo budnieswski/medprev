@@ -4,39 +4,61 @@
 
 <div class="home">
 
-{# 
- # Goood loop break line
- #}
-{% if servicos %}
-<div class="row servicos">
-  {% for servico in servicos %}
-    {% if loop.first or (loop.index0 % 4) == 0 %} <div class="row"> {% endif %}
-
-    <div class="columns three item"> Nothing </div>
-  
-    {% if loop.last or ((loop.index0 + 1) % 4) == 0 %} </div> {% endif %}
-  {% endfor %}
-</div>
-{% endif %}
-
-<div class="row blog">
-  <h2>BLOG</h2>
-  <div class="row">
-
-    {% set blog = get_posts({'category':7, 'posts_per_page':3})  %}
-    {% for item in blog %}
-      <div class="one-third column">
-        <h3>{{item.title}}</h3>
-        <div class="summary">{{item.post_content|excerpt(15)}}</div>
-        <a href="{{item.link}}" class="seemore">Veja Mais</a>
+  <div class="row utilidades">
+    <h2 class="style-h1">Serviços</h2>
+    <div class="row">
+      {% for s in site.acf.default_servicos %}
+      <div class="three columns item">
+        <h3 class="row"> {{s.titulo}} </h3>
+        <div class="row content">
+          <figure class="row">
+            <a href="{{s.link}}" title="{{s.titulo}}">
+              <img src="{{s.imagem}}" alt="{{s.titulo}}" title="{{s.titulo}}" class="u-max-full-width">
+            </a>
+          </figure>
+          <div class="row seemore">
+            <a href="{{s.link}}" title="Confira mais sobre {{s.titulo}}">Confira</a>
+          </div>
+        </div>
       </div>
-    {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+
+</div> {# end home #}
+</div> {# close container #}
+
+<div class="fullblock home servicos">
+  
+  <div class="row">
+    <div class="container">
+      <div class="one-half columns"> <h2 class="style-h1 especialidades">Especialidades</h2> </div>
+      <div class="one-half columns"> <h2 class="style-h1 exames">Exames</h2> </div>
+    </div>
+  </div>
+
+  <div class="row green">
+    <div class="container">
+      <div class="one-half columns especialidades">AA</div>
+      <div class="one-half columns exames">BB</div>
+    </div>
+  </div>
+
+</div>
+{# end fullblock #}
+
+<div class="container">
+  <div class="home">
+
+    <div class="row instituto">
+      <h2 class="row style-h1 doctor">O Instituto MED PREV</h2>
+      <div class="row content">
+        <div class="row"> <div class="five columns"> abs </div> </div>
+        <div class="row seemore"> <a href="{{fn('get_permalink', 49)}}">Confira</a> </div>
+      </div>
+    </div>
 
   </div>
-</div>
-<!-- #blog -->
 
-
-</div>
 
 {% endblock %}

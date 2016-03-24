@@ -1,18 +1,20 @@
-<div class="row"><strong>BUSQUE PELA INICIAL DO EXAME:</strong></div>
-
-<ul class="row busca">
-  {% for lt in 'a'..'z' %}
-    <li><a href="#{{ lt|upper }}">{{ lt }}</a></li>
-  {% endfor %}
-</ul>
-
-<div class="row itens">
-  {% for key, letra in exames %}
-    <div class="row letra" id="{{key}}"><span>{{key}}</span></div>
-    <div class="row itens">
-      {% for exame in letra %}
-        <div class="three columns item"><h2>{{exame}}</h2></div>
-      {% endfor %}
-    </div>
-  {% endfor %}
+<div class="servicos">
+  <div class="row"><strong>BUSQUE PELA INICIAL DO EXAME:</strong></div>
+  
+  <ul class="row busca">
+    {% for lt in 'a'..'z' %}
+      <li><a href="#{{ lt|upper }}">{{ lt }}</a></li>
+    {% endfor %}
+  </ul>
+  
+  <div class="row itens">
+    {% for key, letra in exames %}
+      <div class="row letra" id="{{key}}"><span>{{key}}</span></div>
+      <div class="row itens">
+        {% for exame in letra %}
+          <div class="three columns item"><h2>{{exame}}</h2></div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+  </div>
 </div>
