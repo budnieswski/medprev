@@ -132,6 +132,9 @@ body
     font-size: 30px
     text-transform: uppercase
     margin-bottom: 4%
+    color: $black
+    font-family: 'Raleway', sans-serif
+    font-weight: 300
     &:before
       position: relative
       top: 15px
@@ -147,6 +150,8 @@ body
       content: url('../img/icon/doctor.png')
 
   .servicos
+    strong
+      font-weight: 600
     ul.busca
       margin-bottom: 4%
       padding: 0.5% 0
@@ -179,11 +184,12 @@ body
     .itens
       .letra
         margin-bottom: 1%
+        font-family: 'Raleway', sans-serif
         span
           color: #fff
-          padding: 0 10px
+          padding: 3px 10px
           font-size: 30px
-          font-weight: bold
+          font-weight: 900
           background: $green
           -webkit-border-radius: 50px
           -moz-border-radius: 50px
@@ -198,6 +204,8 @@ body
         h2
           padding-left: 10%
           color: $green_dark
+          letter-spacing: 0.03px
+          font-family: 'Raleway', sans-serif
 
   .home
     .style-h1
@@ -210,6 +218,8 @@ body
       h3
         text-transform: uppercase
         margin-bottom: 2%
+        font-weight: 400
+        letter-spacing: 0.02px
       .content
         background: $gray
         text-align: center
@@ -251,14 +261,19 @@ body
   
     .instituto
       padding: 2% 0
+      p
+        padding: 0
+        margin: 0
       .content
         min-height: 420px
         +img('bg/home-instituto.jpg', 'no-repeat center center')
+      .text
+        padding-top: 2%
       .seemore
-        padding: 7% 0
+        text-align: center
         a
           display: inline-block
-          padding: 0.5% 2%
+          padding: 1% 5%
           color: #fff
           font-size: 18px
           font-weight: bold
