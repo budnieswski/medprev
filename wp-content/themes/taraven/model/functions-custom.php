@@ -128,7 +128,7 @@ function sc_contato ($atts='', $content="") {
 add_shortcode('contato', 'sc_contato');
 
 /*
-* Dinamic Advanced Custom Fields MAP
+* 
 */
 function sc_exames ($atts='', $content="") {
 
@@ -143,6 +143,7 @@ function sc_exames ($atts='', $content="") {
       if (!empty($nitens)) {
         $itens = array();
         foreach ($nitens AS $value) {
+          // Interligado com o ACF, por isso esta encodado (caracteres especiais)
           $itens[]['exame'] = str_replace(':','',base64_decode($value));
         }
       }
@@ -166,7 +167,7 @@ add_shortcode('exames', 'sc_exames');
 
 
 /*
-* Dinamic Advanced Custom Fields MAP
+* 
 */
 function sc_especialidades ($atts='', $content="") {
 
@@ -182,7 +183,7 @@ function sc_especialidades ($atts='', $content="") {
         $itens = array();
         foreach ($nitens AS $value) {
 
-          // Interligado com o ACF, por isso esta encodado
+          // Interligado com o ACF, por isso esta encodado (caracteres especiais)
           $itens[]['especialidade'] = base64_decode($value);
         }
       }

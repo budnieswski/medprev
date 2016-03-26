@@ -12,7 +12,9 @@
       <div class="row letra" id="{{key}}"><span>{{key}}</span></div>
       <div class="row itens">
         {% for exame in letra %}
-          <div class="three columns item"><h2>{{exame}}</h2></div>
+          {% if loop.first or (loop.index0 % 4) == 0 %} <div class="row"> {% endif %}
+            <div class="three columns item"><h2>{{exame}}</h2></div>
+          {% if loop.last or ((loop.index0 + 1) % 4) == 0 %} </div> {% endif %}
         {% endfor %}
       </div>
     {% endfor %}

@@ -39,8 +39,38 @@
 
   <div class="row green">
     <div class="container">
-      <div class="one-half columns especialidades">AA</div>
-      <div class="one-half columns exames">BB</div>
+      <div class="one-half columns especialidades">
+        <div class="row">
+          {% for e in fn('get_field', 'especialidades', 50)|slice(0, 12) %}
+            {% if loop.first or loop.index0 == 6 %} <div class="one-half columns"> {% endif %}
+              {% set e = e.especialidade|split(':') %}
+          
+              <div class="row">
+                <h3>{{e.0}}</h3>
+                <div class="text">{{e.1}}</div>
+              </div>
+          
+            {% if loop.last or (loop.index0 + 1) == 6 %} </div> <!--end--> {% endif %}
+          {% endfor %}
+        </div>
+        <div class="row seemore">
+          Confira a lista completa de <em>especialidades</em> <a href="{{fn('get_permalink', 50)}}">aqui</a>.
+        </div>
+      </div>
+      <div class="one-half columns exames">
+        <div class="row">
+          {% for e in fn('get_field', 'exames', 51)|slice(0, 24) %}
+            {% if loop.first or loop.index0 == 12 %} <div class="one-half columns"> {% endif %}
+          
+            <h3 class="row"> {{e.exame}} </h3>
+          
+            {% if loop.last or (loop.index0 + 1) == 12 %} </div> {% endif %}
+          {% endfor %}
+        </div>
+        <div class="row seemore">
+          Confira a lista completa de <em>exames</em> <a href="{{fn('get_permalink', 51)}}">aqui</a>.
+        </div>
+      </div>
     </div>
   </div>
 
