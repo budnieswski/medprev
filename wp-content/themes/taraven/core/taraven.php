@@ -8,7 +8,7 @@ require(dirname(__FILE__)."/taraven.functions.php");
 Class Taraven extends TimberSite {
 
   // temp variable to process theme settings
-  private static $temp;
+  private $temp;
 
   function __construct( $theme ) {
 
@@ -31,10 +31,11 @@ Class Taraven extends TimberSite {
     if(is_admin())
       add_filter('site_transient_update_plugins', array($this, 'removePluginUpdate') );
 
+
     add_post_type_support( 'page', 'excerpt' );
 
     // Enqueue Scripts and Styles
-    // add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+    add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
 
     add_action('init', array( $this, 'add_menu' ) );
     add_action('init', array( $this, 'add_acf' ) );
@@ -74,20 +75,14 @@ Class Taraven extends TimberSite {
       else
         wp_enqueue_style( md5($script), $theme_uri . '/css/' . $script );      
     }
-  }
 
+  }
 
   // Add Category Name to body_class
   function body_class_add_categories( $classes ) {
    
-    if ( is_page() ){
-      global $post;
-      $classes[] = 'page-' . $post->post_name;
-
-      return $classes;
-    }
     // Only proceed if we're on a single post page
-    if ( is_single() )
+    if ( !is_single() )
       return $classes;
    
     // Get the categories that are assigned to this post
@@ -116,6 +111,7 @@ Class Taraven extends TimberSite {
   function sanitizeOutput($buffer) {
     // if localhost/127.0.0.1 (::1), change to localhost
     $ip = $_SERVER['REMOTE_ADDR'];
+    
     $ip = (strlen(str_replace(':', '', $ip)) < 5) ? 'localhost' : gethostbyname(gethostname()); // IPV4 from server (192.168...)
 
     return str_replace('http://localhost/', "http://{$ip}/", $buffer);

@@ -2,10 +2,87 @@
 
 {% block content %}
 {% if post %}
-  <div class="row"> <h1>{{post.post_title }}</h1> </div>
+  {# <div class="row"> <h1>{{post.post_title }}</h1> </div> #}
   <div class="row"> {{post.content }} </div>
 
-  <div class="row"><a class="single-voltar" href="{{ current_cat.link }}">Voltar</a></div>
+  {{fn('do_shortcode', '[utilidades]')}}
+
+  </div> {# close container #}
+
+  <div class="fullblock servicos">
+    
+    <div class="row">
+      <div class="container">
+        <div class="one-half columns"> <h2 class="style-h1 especialidades">Especialidades</h2> </div>
+        <div class="one-half columns"> <h2 class="style-h1 exames">Exames</h2> </div>
+      </div>
+    </div>
+
+    <div class="row green">
+      <div class="container">
+        <div class="one-half columns especialidades">
+          <div class="row">
+            {% set especialidades = fn('get_field', 'especialidades', post.ID) %}
+            {% for e in especialidades|slice(0, 12) %}
+              {% set e = fn('base64_decode', e) %}
+              {% if loop.first or loop.index0 == 6 %} <div class="one-half columns"> {% endif %}
+                {% set e = e|split(':') %}
+            
+                <div class="row">
+                  <h3>{{e.0}}</h3>
+                  <div class="text">{{e.1}}</div>
+                </div>
+            
+              {% if loop.last or (loop.index0 + 1) == 6 %} </div> <!--end--> {% endif %}
+            {% endfor %}
+          </div>
+          <div class="row seemore">
+            Confira a lista completa de <em>especialidades</em> <a href="{{fn('get_permalink', 50)}}{{post.slug}}">aqui</a>.
+          </div>
+        </div>
+        <div class="one-half columns exames">
+          <div class="row">
+            {% set exames = fn('get_field', 'exames', post.ID) %}
+            {% for e in exames|slice(0, 24) %}
+              {% set e = fn('base64_decode', e) %}
+              {% if loop.first or loop.index0 == 12 %} <div class="one-half columns"> {% endif %}
+            
+              <h3 class="row"> {{e}} </h3>
+            
+              {% if loop.last or (loop.index0 + 1) == 12 %} </div> {% endif %}
+            {% endfor %}
+          </div>
+          <div class="row seemore">
+            Confira a lista completa de <em>exames</em> <a href="{{fn('get_permalink', 51)}}{{post.slug}}">aqui</a>.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  {# end fullblock #}
+
+  <div class="container">
+
+
+    <div class="row localizacao">
+      <h2 class="row style-h1 location">Localização</h2>
+      <div class="row">
+        <div class="one-half columns">
+          <div class="row endereco"> {{post.get_field('endereco')}} </div>
+          <div class="row horario"> {{post.get_field('horario')}} </div>
+        </div>
+        <div class="one-half columns">
+          {% set location = post.get_field('mapa') %}
+          {% if location %}
+          <div class="row mapa acf-map">
+            <div class="marker" data-lat="{{ location.lat }}" data-lng="{{ location.lng }}"></div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
 {% endif %}
 
 {% endblock %}

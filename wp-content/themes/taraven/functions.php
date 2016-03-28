@@ -39,7 +39,7 @@ function create_custom_rewrite_rules() {
     //Afterwords we need to call WordPress function flush which will re-save all rules
     // flush_rewrite_rules();
 }
-// add_action('admin_init', 'create_custom_rewrite_rules');
+add_action('admin_init', 'create_custom_rewrite_rules');
 // flush_rewrite_rules();
 
 function handle_custom_query_vars($query_vars) {
@@ -80,8 +80,8 @@ Class MyTheme extends Taraven {
           // 'http://cdn.jsdelivr.net/jquery.mixitup/latest/jquery.mixitup.min.js?ver=1.0.0',
           'main.js',
           // For use Advanced Custom Fields Maps
-          // 'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false',
-          // 'lib/google.maps.js',
+          'https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false',
+          'lib/google.maps.js',
       ),
       'menu' => array('Header'),
       'acf' => array('Default', 'Home'),

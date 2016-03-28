@@ -8,16 +8,6 @@
   {# <meta name="author" content="Guilherme Budnieswski - Muito Mais Digital"> #}
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  {# CSS
-  ================================================== #}
-  {% for css in site.theme.css %}
-    {% if css matches '{^(http|https|//)}' %}
-      <link rel="stylesheet" href="{{ css }}">
-    {% else %}
-      <link rel="stylesheet" href="{{site.theme.link}}/assets/css/{{ css }}">
-    {% endif %}
-  {% endfor %}
-
   <!--[if lt IE 9]> <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script> <![endif]-->
 
   {# Favicons
@@ -69,11 +59,12 @@
       <div class="three columns unidade u-pull-right">
         <h4 class="row">Selecione uma unidade</h4>
         <div class="row"> {{fn('do_shortcode', '[select-unidades showvalue="url"]')}} </div>
+        
+        {% if fn('is_unidade') %}
         <div class="row telefone">
-          <small>(41)</small> 1234-1234<br>
-          <small>(41)</small> 1234-1234
+          {{fn('the_phones', post.ID)}}
         </div>
-
+        {% endif %}
       </div>
     </div>    
 
@@ -89,7 +80,8 @@
     <div class="container">    
       <div class="row">
         <nav class="nine columns">
-          {{ macros.menu(site.menu.header.get_items, '') }}        
+          {% set menu = site.menu.header.get_items %}
+          {{ macros.menu(menu, '') }}        
         </nav>
     
         <div class="three columns search">
@@ -141,7 +133,7 @@
       <a href="#" class="scrollup">GoUp</a>
       <div class="row">
         <nav class="align-center">
-          {{ macros.menu(site.menu.header.get_items, '') }}        
+          {{ macros.menu(menu, '') }}        
         </nav>
       </div>
     </div>
@@ -157,17 +149,6 @@
 
   </div> {# end container #}
 </div> {# end footer #}
-
-
-{# JS
-================================================== #}
-{% for js in site.theme.js %}
-  {% if js matches '{^(http|https|//)}' %}
-    <script src="{{ js }}"></script>
-  {% else %}
-    <script src="{{ site.theme.link }}/assets/js/{{ js }}"></script>
-  {% endif %}
-{% endfor %}
 
 {{wp_footer}}
 </body>

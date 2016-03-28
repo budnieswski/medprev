@@ -9,9 +9,38 @@
     <div class="row"> <div class="twelve columns"> {{ archive_description }} </div> </div>
   {% endif %}
 
-  {% for post in posts %}
-    <div class="columns three"> <h2><a href="{{ post.link }}">{{ post.title }}</a></h2> </div>
-  {% endfor %}
+
+  {% set unidades = fn('getUnidades') %}
+  {% if unidades %}
+  <div class="servicos unidades">
+    <div class="row"><strong>BUSQUE PELA INICIAL DO ESTADO:</strong></div>
+    
+    <ul class="row busca">
+      {% for lt in 'a'..'z' %}
+        <li><a href="#{{ lt|upper }}">{{ lt }}</a></li>
+      {% endfor %}
+    </ul>
+    
+    <div class="row itens">
+      {% for key, state in unidades %}
+        <div class="row letra" id="{{key}}"><span>{{state.category.name}}</span></div>
+        <div class="row itens">
+          {% for e in state.posts %}
+            {% if loop.first or (loop.index0 % 4) == 0 %} <div class="row"> {% endif %}
+              <div class="three columns item">
+                <h2 class="row"><a href="{{fn('get_permalink',e.ID)}}" title="{{e.post_title}}">{{e.post_title}}</a></h2>
+              </div>
+            {% if loop.last or ((loop.index0 + 1) % 4) == 0 %} </div> {% endif %}
+          {% endfor %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+  {% else %}
+    <strong>Nenhuma unidade cadastrada até o momento !</strong>
+  {% endif %}
+
+
 
 </div>
 

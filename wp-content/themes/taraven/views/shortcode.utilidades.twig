@@ -1,0 +1,20 @@
+<div class="row utilidades">
+    <h2 class="style-h1">Serviços</h2>
+    <div class="row">
+      {% for s in site.acf.default_servicos %}
+      <div class="three columns item">
+        <h3 class="row"> {{s.titulo}} </h3>
+        <div class="row content">
+          <figure class="row">
+            <a href="{{s.link}}" title="{{s.titulo}}">
+              <img src="{{s.imagem}}" alt="{{s.titulo}}" title="{{s.titulo}}" class="u-max-full-width">
+            </a>
+          </figure>
+          <div class="row seemore">
+            <a href="{{s.link}}" title="Confira mais sobre {{s.titulo}}">Confira</a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>

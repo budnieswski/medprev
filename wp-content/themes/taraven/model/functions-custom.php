@@ -1,9 +1,57 @@
 <?php
 require(dirname(__FILE__).'/acf.fields.php');
 
-// if ( function_exists( 'add_image_size' ) ) {
-//   add_image_size('thumb-350x250', 350, 250, true);
-// }
+
+
+function the_phones($post_id)
+{
+  echo preg_replace("((\()+([0-9])+(\)))", "<small>\\0</small>", get_field('telefone_1', $post_id));
+  echo "<br>";
+  echo preg_replace("((\()+([0-9])+(\)))", "<small>\\0</small>", get_field('telefone_2', $post_id));
+}
+
+function is_unidade () {
+  $a = current(get_the_category(get_the_ID()));
+  if (is_single() && $a->category_parent==2 ) {
+    return true;
+  }
+}
+
+/**
+ * Get all State and City
+ * @return  array [Bidimensional with State and cities inside]
+ */
+function getUnidades()
+{
+  $categeries = get_categories(array(
+    'child_of'  => 2,
+    'orderby'   => 'name',
+    'order'     => 'ASC',
+    // 'hide_empty' => 0,
+  ));
+
+  $output = array();
+  foreach ($categeries AS $category)
+  {
+    $_posts = get_posts(array(
+      'category'        => $category->term_id,
+      'posts_per_page'  => -1,
+      'orderby'         => 'title',
+      'order'           => 'ASC'
+    ));
+
+    if( !empty($_posts) )
+    {
+      $firstLetter = $category->name[0];
+      $output[$firstLetter] = array(
+        'category' => $category,
+        'posts' => $_posts
+      );
+    }
+  }
+
+  return $output;
+}
 
 /**
  * Create a Unidades select, according the necessity
@@ -21,23 +69,20 @@ function sc_select_unidades ($atts='', $content="")
   $required = empty($atts['required']) ? 'false' : $atts['required'];
   $emptytext = empty($atts['emptytext']) ? '---' : $atts['emptytext'];
 
-  $categeries = get_categories(array(
-    'child_of' => 2,
-    // 'hide_empty' => 0,
-  ));
+  $unidades = getUnidades();
 
   $output = "<option value=\"\">{$emptytext}</option>";
-  foreach ($categeries AS $category) {
-    $output .= "<optgroup label=\"{$category->name}\">";
+  foreach ($unidades AS $category) {
+    $output .= "<optgroup label=\"{$category['category']->name}\">";
 
-    $_posts = get_posts(array('category'=>$category->term_id, 'posts_per_page'=>-1, 'orderby'=>'title', 'order'=>'ASC'));
-    if (empty($_posts)) {
-      $output .= "<option value=\"\">--</option>";
-      $output .= "</optgroup>";
-      continue;
-    }
+    // $_posts = get_posts(array('category'=>$category->term_id, 'posts_per_page'=>-1, 'orderby'=>'title', 'order'=>'ASC'));
+    // if (empty($_posts)) {
+    //   $output .= "<option value=\"\">--</option>";
+    //   $output .= "</optgroup>";
+    //   continue;
+    // }
 
-    foreach ($_posts AS $_post) {
+    foreach ($category['posts'] AS $_post) {
       $data = "";
       if($show_value=='url')
       {
@@ -104,7 +149,16 @@ wpcf7_add_shortcode('unidades', 'dynamic_unidades', true);
 
 
 
+/*
+* 
+*/
+function sc_utilidades ($atts='', $content="") {
 
+  $context = Timber::get_context();
+  return Timber::compile('shortcode.utilidades.twig', $context);
+
+}
+add_shortcode('utilidades', 'sc_utilidades');
 
 
 
