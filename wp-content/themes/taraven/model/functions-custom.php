@@ -17,6 +17,29 @@ function is_unidade () {
   }
 }
 
+function get_custom_gallery()
+{
+  $default = get_field('default_banner', 'options');
+
+  if( is_unidade() )
+  {
+    global $post;
+    $gallery = get_field('galeria', $post->ID);
+
+    // Marque para NÂO INCLUIR os banners da home
+    if( !get_field('include_banner_home', $post->ID) ){
+      if(!empty($gallery))
+        return array_merge($gallery, $default);
+      else
+        return $default;
+    }
+
+    return $gallery;
+  }
+  
+  return $default;
+}
+
 /**
  * Get all State and City
  * @return  array [Bidimensional with State and cities inside]

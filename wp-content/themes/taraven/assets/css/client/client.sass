@@ -8,7 +8,25 @@ body
   color: $black
   background: $gray_dark
 
-@import client.blog.sass
+/* Let's get this party started */
+::-webkit-scrollbar
+  width: 10px
+ 
+/* Track */
+::-webkit-scrollbar-track
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3) 
+  -webkit-border-radius: 10px
+  border-radius: 10px
+ 
+/* Handle */
+::-webkit-scrollbar-thumb
+  -webkit-border-radius: 10px
+  border-radius: 10px
+  background: $green_dark
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5) 
+
+::-webkit-scrollbar-thumb:window-inactive
+  background: $green_dark
 
 // Header
 //––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -279,6 +297,16 @@ body
         padding: 0.5% 2%
         background: #fff
   
+  .single-unidades
+    .localizacao
+      margin: 2% 0
+      .acf-map
+        margin: 0
+      .endereco,
+      .horario
+        margin: 7% 0
+        color: $green_dark
+        font-weight: 600
 
   .home
     .style-h1
@@ -404,3 +432,29 @@ body
 @media only screen and (max-width: 767px)
   .header .unidade
     width: 100%
+
+  .header .unidade .telefone
+    min-height: 60px
+  
+  .menu .search
+    margin-bottom: 5%
+
+  .wrap .style-h1
+    padding-bottom: 10%
+    font-size: 28px
+    text-align: center !important
+    &:before
+      display: block
+      top: 0
+      text-align: center
+
+  .wrap .utilidades .item
+    margin-bottom: 4%
+
+  .wrap .fullblock.servicos .green .one-half.columns
+    padding-top: 2%
+    padding-bottom: 2%
+    margin-bottom: 5%
+
+  .footer .color-range
+    background: transparent

@@ -10,17 +10,23 @@
 </div> {# close container #}
 
 <div class="fullblock servicos">
-  
+  {% if not fn('wp_is_mobile') %}
   <div class="row">
     <div class="container">
       <div class="one-half columns"> <h2 class="style-h1 especialidades">Especialidades</h2> </div>
       <div class="one-half columns"> <h2 class="style-h1 exames">Exames</h2> </div>
     </div>
   </div>
+  {% endif %}
 
   <div class="row green">
     <div class="container">
       <div class="one-half columns especialidades">
+
+        {% if fn('wp_is_mobile') %}
+          <h2 class="row style-h1 especialidades">Especialidades</h2>
+        {% endif %}
+
         <div class="row">
           {% for e in fn('get_field', 'especialidades', 50)|slice(0, 12) %}
             {% if loop.first or loop.index0 == 6 %} <div class="one-half columns"> {% endif %}
@@ -39,6 +45,9 @@
         </div>
       </div>
       <div class="one-half columns exames">
+        {% if fn('wp_is_mobile') %}
+          <h2 class="row style-h1 exames">Exames</h2>
+        {% endif %}
         <div class="row">
           {% for e in fn('get_field', 'exames', 51)|slice(0, 24) %}
             {% if loop.first or loop.index0 == 12 %} <div class="one-half columns"> {% endif %}

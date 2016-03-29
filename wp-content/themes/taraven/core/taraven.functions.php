@@ -193,12 +193,15 @@ function taraven_get_gallery_images($post_id) {
 /*
 * Retorna a galeria criada pelo Advanced Custom Fields
 */
-function taraven_acf_gallery ($nameCF='banner') {
+function taraven_acf_gallery ($data='banner') {
 
   // Verifica se o Advanced Custom Fields esta ativado
   if (!function_exists('get_field')) { return false; }
-  
-  $images = get_field($nameCF,'option');
+
+  if( is_array($data) )
+    $images = $data;
+  else
+    $images = get_field($data,'option');
 
   if( !empty($images) ):
     foreach ($images AS $image) {
