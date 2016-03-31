@@ -55,16 +55,18 @@
   <div class="container">
     
     <div class="row">
-      <div class="five columns"> <a href="{{ site.url }}" class="block logo">LOGO</a> </div>
-      <div class="three columns unidade u-pull-right">
+      <div class="four columns"> <a href="{{ site.url }}" class="block logo">LOGO</a> </div>
+
+      {% if fn('is_unidade') %}
+      <div class="five columns unidade">
+        <div class="row titulo-unidade"> <h1>{{fn('get_the_title', post.ID)}}</h1> </div>
+        <div class="row telefone"> {{fn('the_phones', post.ID)}} </div>
+      </div>
+      {% endif %}
+
+      <div class="three columns unidade-select u-pull-right">
         <h4 class="row">Selecione uma unidade</h4>
         <div class="row"> {{fn('do_shortcode', '[select-unidades showvalue="url"]')}} </div>
-        
-        {% if fn('is_unidade') %}
-        <div class="row telefone">
-          {{fn('the_phones', post.ID)}}
-        </div>
-        {% endif %}
       </div>
     </div>    
 
